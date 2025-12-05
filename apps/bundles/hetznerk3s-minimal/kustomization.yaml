@@ -5,7 +5,7 @@ resources:
   - ../../base/istio
   - ../../base/kubelinks
   - ../../base/pgadmin
-  - ../../base/grafana
+  - ../../base/victoria-metrics-k8s-stack
 patches:
   - path: hetznerk3s.yaml
   - path: cnpg-delete.yaml
