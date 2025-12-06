@@ -13,3 +13,7 @@ patches:
       kind: HelmRelease
       name: external-dns-public
       namespace: external-dns
+  - path: metallb/namespace-patch.yaml
+    target:
+      kind: Namespace
+      name: metallb-system
