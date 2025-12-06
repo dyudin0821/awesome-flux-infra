@@ -1,4 +1,4 @@
-- op: add
+- op: replace
   path: /spec/values/provider
   value:
     name: cloudflare
@@ -10,3 +10,7 @@
         secretKeyRef:
           name: cloudflare-api-token
           key: cloudflare-api-token
+- op: replace
+  path: /spec/values/domainFilters
+  value:
+    - portogate.app
