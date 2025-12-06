@@ -89,6 +89,7 @@ metadata:
   name: victoria-metrics-k8s-stack
   namespace: monitoring
 spec:
+  releaseName: vm-stack
   chart:
     spec:
       version: "0.65.0"
