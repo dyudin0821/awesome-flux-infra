@@ -15,4 +15,3 @@ spec:
             key: cloudflare-api-token
     domainFilters:
       - portogate.app
-    txtPrefix: "external-dns-"
