@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: wildcard-gateway-tls
+  namespace: istio-ingress
+spec:
+  secretName: wildcard-gateway-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  dnsNames:
+    - "*.talos-dev-hel1-1.portogate.app"

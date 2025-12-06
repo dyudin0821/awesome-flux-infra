@@ -4,3 +4,4 @@ namespace: cert-manager
 resources:
   - cluster-issuer-letsencrypt.yaml
   - external-secret.yaml
+  - wildcard-certificate.yaml
