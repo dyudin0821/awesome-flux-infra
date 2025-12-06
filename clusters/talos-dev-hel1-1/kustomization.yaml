@@ -6,3 +6,9 @@ resources:
   - metallb
   - external-secrets
   - external-dns
+patches:
+  - path: external-dns/helm-release-patch.yaml
+    target:
+      kind: HelmRelease
+      name: external-dns-public
+      namespace: external-dns
