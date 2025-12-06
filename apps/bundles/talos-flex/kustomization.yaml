@@ -8,6 +8,6 @@ resources:
   - ../../base/kubelinks
   - ../../base/victoria-metrics-k8s-stack
   - ../../base/metrics-server
-  # - ../../base/metallb
+  - ../../base/metallb
 patches:
   - path: hetzner-talos.yaml
