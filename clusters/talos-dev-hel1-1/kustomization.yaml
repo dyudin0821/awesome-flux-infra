@@ -4,5 +4,3 @@ resources:
   - ../../apps/bundles/talos-flex
   - istio
   - metallb
-patchesStrategicMerge:
-  - victoria-metrics-k8s-stack/helm-release.yaml
