@@ -77,7 +77,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "0.11.1"
+      version: "1.1.1"
       chart: external-secrets
       sourceRef:
         kind: HelmRepository
@@ -184,3 +184,24 @@ spec:
         kind: HelmRepository
         name: metallb
         namespace: metallb-system
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: longhorn
+  namespace: longhorn-system
+spec:
+  chart:
+    spec:
+      version: "v1.10.1"
+      chart: longhorn
+      sourceRef:
+        kind: HelmRepository
+        name: longhorn
+  values:
+    persistence:
+      defaultClassReplicaCount: 2
+    defaultSettings:
+      defaultDataPath: /var/mnt/longhorn
+      defaultReplicaCount: 2
+      replicaSoftAntiAffinity: true

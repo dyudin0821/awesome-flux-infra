@@ -5,6 +5,7 @@ resources:
   - ../../base/external-secrets
   - ../../base/reflector
   - ../../base/cloudnative-pg
+  - ../../base/longhorn
   - ../../base/kubelinks
   - ../../base/victoria-metrics-k8s-stack
   - ../../base/metrics-server
