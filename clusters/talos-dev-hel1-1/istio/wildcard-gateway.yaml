@@ -9,9 +9,12 @@ spec:
   servers:
     - hosts:
         - links.${cluster_subdomain}
-        #- n8n.${cluster_subdomain}
-        - pgadmin.${cluster_subdomain}
         - grafana.${cluster_subdomain}
+        - vmagent.${cluster_subdomain}
+        - vmalert.${cluster_subdomain}
+        - vmalertmanager.${cluster_subdomain}
+        - vmsingle.${cluster_subdomain}
+        - n8n.${cluster_subdomain}
       port:
         name: http
         number: 80
@@ -20,9 +23,12 @@ spec:
         httpsRedirect: true
     - hosts:
         - links.${cluster_subdomain}
-        #- n8n.${cluster_subdomain}
-        - pgadmin.${cluster_subdomain}
         - grafana.${cluster_subdomain}
+        - vmagent.${cluster_subdomain}
+        - vmalert.${cluster_subdomain}
+        - vmalertmanager.${cluster_subdomain}
+        - vmsingle.${cluster_subdomain}
+        - n8n.${cluster_subdomain}
       port:
         name: https
         number: 443

@@ -1,0 +1,193 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kubelinks
+  namespace: kubelinks
+spec:
+  chart:
+    spec:
+      version: "0.4.13"
+      chart: kubelinks
+      sourceRef:
+        kind: HelmRepository
+        name: kkirara
+        namespace: kubelinks
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: istiod
+  namespace: istio-system
+spec:
+  chart:
+    spec:
+      version: "1.28.1"
+      chart: istiod
+      sourceRef:
+        kind: HelmRepository
+        name: istio
+        namespace: istio-system
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: istio-ingress-private
+  namespace: istio-ingress
+spec:
+  chart:
+    spec:
+      version: "1.28.1"
+      chart: gateway
+      sourceRef:
+        kind: HelmRepository
+        name: istio
+        namespace: istio-system
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: reflector
+  namespace: reflector
+spec:
+  chart:
+    spec:
+      version: "7.1.288"
+      chart: reflector
+      sourceRef:
+        kind: HelmRepository
+        name: emberstack
+        namespace: reflector
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: cloudnative-pg
+  namespace: cnpg-system
+spec:
+  chart:
+    spec:
+      version: "0.22.1"
+      chart: cloudnative-pg
+      sourceRef:
+        kind: HelmRepository
+        name: cloudnative-pg
+        namespace: cnpg-system
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: external-secrets
+  namespace: external-secrets
+spec:
+  chart:
+    spec:
+      version: "0.11.1"
+      chart: external-secrets
+      sourceRef:
+        kind: HelmRepository
+        name: external-secrets
+        namespace: external-secrets
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: victoria-metrics-k8s-stack
+  namespace: victoria-metrics-k8s-stack
+spec:
+  chart:
+    spec:
+      version: "0.65.0"
+      chart: victoria-metrics-k8s-stack
+      sourceRef:
+        kind: HelmRepository
+        name: victoria-metrics
+        namespace: victoria-metrics-k8s-stack
+  values:
+    # Talos-specific configuration
+    kubeEtcd:
+      enabled: false
+    kubeControllerManager:
+      enabled: false
+    kubeScheduler:
+      enabled: false
+    kubeProxy:
+      enabled: false
+    kubelet:
+      enabled: true
+      vmScrape:
+        spec:
+          jobLabel: kubelet
+          endpoints:
+            - port: https-metrics
+              scheme: https
+              tlsConfig:
+                caFile: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+                insecureSkipVerify: true
+              bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
+              honorLabels: true
+              relabelConfigs:
+                - action: labelmap
+                  regex: __meta_kubernetes_node_label_(.+)
+                - targetLabel: job
+                  replacement: kubelet
+            - port: https-metrics
+              scheme: https
+              path: /metrics/cadvisor
+              tlsConfig:
+                caFile: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+                insecureSkipVerify: true
+              bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
+              honorLabels: true
+              metricRelabelConfigs:
+                - action: labeldrop
+                  regex: (uid|container_id|image_id)
+            - port: https-metrics
+              scheme: https
+              path: /metrics/probes
+              tlsConfig:
+                caFile: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+                insecureSkipVerify: true
+              bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
+              honorLabels: true
+              relabelConfigs:
+                - targetLabel: job
+                  replacement: probes
+    prometheus-node-exporter:
+      enabled: true
+    defaultRules:
+      disabled:
+        TooManyScrapeErrors: true
+        KubeControllerManagerDown: true
+        KubeSchedulerDown: true
+        KubeProxyDown: true
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: metrics-server
+  namespace: metrics-server
+spec:
+  chart:
+    spec:
+      version: "3.13.0"
+      chart: metrics-server
+      sourceRef:
+        kind: HelmRepository
+        name: metrics-server
+        namespace: metrics-server
+---
+# apiVersion: helm.toolkit.fluxcd.io/v2
+# kind: HelmRelease
+# metadata:
+#   name: metallb
+#   namespace: metallb-system
+# spec:
+#   chart:
+#     spec:
+#       version: "v0.15.3"
+#       chart: metallb
+#       sourceRef:
+#         kind: HelmRepository
+#         name: metallb
+#         namespace: metallb-system

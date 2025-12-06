@@ -24,20 +24,6 @@ spec:
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: victoria-metrics-k8s-stack
-  namespace: monitoring
-spec:
-  chart:
-    spec:
-      version: "0.65.0"
-  values:
-    prometheus-node-exporter:
-      hostRootFsMount:
-        enabled: false
----
-apiVersion: helm.toolkit.fluxcd.io/v2
-kind: HelmRelease
-metadata:
   name: istiod
   namespace: istio-system
 spec:
@@ -84,3 +70,23 @@ spec:
         kind: HelmRepository
         name: runix
         namespace: pgadmin
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: grafana
+  namespace: grafana
+spec:
+  chart:
+    spec:
+      version: "10.3.0"
+      chart: grafana
+      sourceRef:
+        kind: HelmRepository
+        name: grafana
+        namespace: grafana
+  values:
+    initChownData:
+      securityContext:
+        capabilities:
+          drop: []
