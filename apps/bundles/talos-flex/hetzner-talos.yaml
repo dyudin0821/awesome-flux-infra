@@ -99,14 +99,9 @@ metadata:
   name: victoria-metrics-k8s-stack
   namespace: monitoring
 spec:
-  releaseName: vm-stack
   chart:
     spec:
       version: "0.65.0"
-      chart: victoria-metrics-k8s-stack
-      sourceRef:
-        kind: HelmRepository
-        name: vm
   values:
     # Talos-specific configuration
     kubeEtcd:

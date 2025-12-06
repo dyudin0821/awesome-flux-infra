@@ -12,7 +12,7 @@ spec:
   http:
     - route:
         - destination:
-            host: vmagent-victoria-metrics-k8s-stack.monitoring.svc.cluster.local
+            host: vmagent-vm-stack-victoria-metrics-k8s-stack.monitoring.svc.cluster.local
             port:
               number: 8429
 ---
@@ -29,7 +29,7 @@ spec:
   http:
     - route:
         - destination:
-            host: vmalert-victoria-metrics-k8s-stack.monitoring.svc.cluster.local
+            host: vmalert-vm-stack-victoria-metrics-k8s-stack.monitoring.svc.cluster.local
             port:
               number: 8080
 ---
@@ -46,7 +46,7 @@ spec:
   http:
     - route:
         - destination:
-            host: vmalertmanager-victoria-metrics-k8s-stack.monitoring.svc.cluster.local
+            host: vmalertmanager-vm-stack-victoria-metrics-k8s-stack.monitoring.svc.cluster.local
             port:
               number: 9093
 ---
@@ -63,6 +63,6 @@ spec:
   http:
     - route:
         - destination:
-            host: vmsingle-victoria-metrics-k8s-stack.monitoring.svc.cluster.local
+            host: vmsingle-vm-stack-victoria-metrics-k8s-stack.monitoring.svc.cluster.local
             port:
-              number: 8429
+              number: 8428

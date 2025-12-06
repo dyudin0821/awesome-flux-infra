@@ -12,6 +12,6 @@ spec:
   http:
     - route:
         - destination:
-            host: victoria-metrics-k8s-stack-grafana.monitoring.svc.cluster.local
+            host: vm-stack-grafana.monitoring.svc.cluster.local
             port:
               number: 80

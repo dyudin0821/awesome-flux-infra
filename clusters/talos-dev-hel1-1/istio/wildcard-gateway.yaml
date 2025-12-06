@@ -3,8 +3,6 @@ kind: Gateway
 metadata:
   name: wildcard-gateway
   namespace: istio-ingress
-  annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   selector:
     istio: ingress-private

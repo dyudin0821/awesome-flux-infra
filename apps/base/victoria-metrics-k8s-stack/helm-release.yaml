@@ -13,7 +13,7 @@ spec:
         kind: HelmRepository
         name: vm
       interval: 5m
-  releaseName: victoria-metrics-k8s-stack
+  releaseName: vm-stack
   install:
     crds: Skip
     remediation:
