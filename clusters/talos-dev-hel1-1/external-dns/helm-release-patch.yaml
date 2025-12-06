@@ -1,0 +1,12 @@
+- op: add
+  path: /spec/values/provider
+  value:
+    name: cloudflare
+- op: add
+  path: /spec/values/env
+  value:
+    - name: CF_API_TOKEN
+      valueFrom:
+        secretKeyRef:
+          name: cloudflare-api-token
+          key: cloudflare-api-token

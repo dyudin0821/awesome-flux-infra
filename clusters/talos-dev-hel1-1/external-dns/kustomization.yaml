@@ -3,5 +3,9 @@ kind: Kustomization
 namespace: external-dns
 resources:
   - external-secret.yaml
-patchesStrategicMerge:
-  - helm-release.yaml
+patches:
+  - path: helm-release-patch.yaml
+    target:
+      kind: HelmRelease
+      name: external-dns-public
+      namespace: external-dns
