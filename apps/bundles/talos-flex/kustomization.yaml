@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - ../../base/istio
   - ../../base/external-secrets
+  - ../../base/external-dns
   - ../../base/reflector
   - ../../base/cloudnative-pg
   - ../../base/longhorn

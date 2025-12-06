@@ -4,3 +4,5 @@ resources:
   - ../../apps/bundles/talos-flex
   - istio
   - metallb
+  - external-secrets
+  - external-dns
