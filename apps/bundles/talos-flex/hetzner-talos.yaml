@@ -12,7 +12,6 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: kkirara
-        namespace: kubelinks
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
@@ -27,7 +26,6 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: istio
-        namespace: istio-system
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
@@ -42,7 +40,6 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: istio
-        namespace: istio-system
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
@@ -57,7 +54,6 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: emberstack
-        namespace: reflector
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
@@ -72,7 +68,6 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: cnpg
-        namespace: cnpg-system
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
@@ -87,13 +82,12 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: external-secrets
-        namespace: external-secrets
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: victoria-metrics-k8s-stack
-  namespace: victoria-metrics-k8s-stack
+  namespace: monitoring
 spec:
   chart:
     spec:
@@ -101,8 +95,7 @@ spec:
       chart: victoria-metrics-k8s-stack
       sourceRef:
         kind: HelmRepository
-        name: victoria-metrics
-        namespace: victoria-metrics-k8s-stack
+        name: vm
   values:
     # Talos-specific configuration
     kubeEtcd:
@@ -175,7 +168,6 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: metrics-server
-        namespace: metrics-server
 ---
 # apiVersion: helm.toolkit.fluxcd.io/v2
 # kind: HelmRelease
