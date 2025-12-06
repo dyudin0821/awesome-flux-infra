@@ -215,7 +215,3 @@ spec:
   chart:
     spec:
       version: "1.19.0"
-      chart: external-dns
-      sourceRef:
-        kind: HelmRepository
-        name: external-dns
