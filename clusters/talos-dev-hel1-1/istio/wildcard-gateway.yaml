@@ -3,6 +3,8 @@ kind: Gateway
 metadata:
   name: wildcard-gateway
   namespace: istio-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   selector:
     istio: ingress-private
@@ -34,5 +36,5 @@ spec:
         number: 443
         protocol: HTTPS
       tls:
-        credentialName: localhost-direct
+        credentialName: wildcard-gateway-tls
         mode: SIMPLE

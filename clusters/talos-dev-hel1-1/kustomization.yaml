@@ -6,6 +6,7 @@ resources:
   - metallb
   - external-secrets
   - external-dns
+  - cert-manager
 patches:
   - path: external-dns/helm-release-patch.yaml
     target:
