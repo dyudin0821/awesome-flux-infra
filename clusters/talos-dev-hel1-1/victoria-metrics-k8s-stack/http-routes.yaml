@@ -76,5 +76,5 @@ spec:
     - grafana.${cluster_subdomain}
   rules:
     - backendRefs:
-        - name: grafana-vm-stack-victoria-metrics-k8s-stack
+        - name: vm-stack-grafana
           port: 80
