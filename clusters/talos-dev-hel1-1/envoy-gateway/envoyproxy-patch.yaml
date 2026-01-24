@@ -1,3 +1,5 @@
+# loadBalancerClass: metallb prevents Hetzner Cloud CCM from creating a Load Balancer
+# and ensures MetalLB handles the service using the floating IP
 - op: add
   path: /spec/provider
   value:
@@ -5,6 +7,7 @@
     kubernetes:
       envoyService:
         type: LoadBalancer
+        loadBalancerClass: metallb
         annotations:
           metallb.universe.tf/address-pool: public-pool
           metallb.universe.tf/loadBalancerIPs: 95.216.182.25
