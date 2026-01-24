@@ -1,5 +1,7 @@
 # loadBalancerClass: metallb prevents Hetzner Cloud CCM from creating a Load Balancer
 # and ensures MetalLB handles the service using the floating IP
+# externalTrafficPolicy: Cluster allows traffic to come to any node and be forwarded to the pod,
+# matching Istio's behavior and working with MetalLB L2 mode
 - op: add
   path: /spec/provider
   value:
@@ -8,6 +10,7 @@
       envoyService:
         type: LoadBalancer
         loadBalancerClass: metallb
+        externalTrafficPolicy: Cluster
         annotations:
           metallb.universe.tf/address-pool: public-pool
           metallb.universe.tf/loadBalancerIPs: 95.216.182.25
