@@ -11,4 +11,3 @@
         annotations:
           metallb.universe.tf/address-pool: public-pool
           metallb.universe.tf/loadBalancerIPs: 95.216.182.25
-        loadBalancerIP: 95.216.182.25
