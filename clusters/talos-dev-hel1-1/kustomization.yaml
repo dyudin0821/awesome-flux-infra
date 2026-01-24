@@ -10,7 +10,6 @@ resources:
   - cert-manager
   - victoria-metrics-k8s-stack
   - n8n
-  - kubelinks
 patches:
   - path: external-dns/helm-release-patch.yaml
     target:

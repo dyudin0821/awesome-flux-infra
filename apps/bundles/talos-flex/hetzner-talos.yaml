@@ -1,17 +1,17 @@
----
-apiVersion: helm.toolkit.fluxcd.io/v2
-kind: HelmRelease
-metadata:
-  name: kubelinks
-  namespace: kubelinks
-spec:
-  chart:
-    spec:
-      version: "0.4.13"
-      chart: kubelinks
-      sourceRef:
-        kind: HelmRepository
-        name: kkirara
+#---
+#apiVersion: helm.toolkit.fluxcd.io/v2
+#kind: HelmRelease
+#metadata:
+#  name: kubelinks
+#  namespace: kubelinks
+#spec:
+#  chart:
+#    spec:
+#      version: "0.4.13"
+#      chart: kubelinks
+#      sourceRef:
+#        kind: HelmRepository
+#        name: kkirara
 #---
 #apiVersion: helm.toolkit.fluxcd.io/v2
 #kind: HelmRelease
