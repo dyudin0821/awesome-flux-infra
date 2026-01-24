@@ -21,3 +21,17 @@ spec:
       retries: 3
   # Defaults: https://github.com/envoyproxy/gateway/blob/main/charts/gateway-helm/values.tmpl.yaml
   values:
+    deployment:
+      replicas: 2
+      pod:
+        affinity:
+          podAntiAffinity:
+            preferredDuringSchedulingIgnoredDuringExecution:
+              - weight: 100
+                podAffinityTerm:
+                  labelSelector:
+                    matchLabels:
+                      app.kubernetes.io/name: gateway-helm
+                  topologyKey: kubernetes.io/hostname
+    podDisruptionBudget:
+      minAvailable: 1

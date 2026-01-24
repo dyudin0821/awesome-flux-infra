@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - wildcard-certificate.yaml
   - reference-grants.yaml
+  - envoy-pdb.yaml

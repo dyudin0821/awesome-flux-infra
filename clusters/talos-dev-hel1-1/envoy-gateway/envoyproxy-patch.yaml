@@ -7,6 +7,18 @@
   value:
     type: Kubernetes
     kubernetes:
+      envoyDeployment:
+        replicas: 2
+        pod:
+          affinity:
+            podAntiAffinity:
+              preferredDuringSchedulingIgnoredDuringExecution:
+                - weight: 100
+                  podAffinityTerm:
+                    labelSelector:
+                      matchLabels:
+                        gateway.envoyproxy.io/owning-gateway-name: envoy-public
+                    topologyKey: kubernetes.io/hostname
       envoyService:
         type: LoadBalancer
         loadBalancerClass: metallb
