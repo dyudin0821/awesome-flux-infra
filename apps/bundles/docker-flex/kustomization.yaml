@@ -4,11 +4,13 @@ resources:
   - ../../base/victoria-metrics-k8s-stack
   - ../../base/flux-monitoring
   - ../../base/kubelinks
+  - ../../base/kubelinks/components/gw-api
   - ../../base/k8s-event-logger
   - ../../base/metrics-server
   - ../../base/blackbox-exporter
   - ../../base/keda
   - ../../base/istio
+  - ../../base/envoy-gateway
   - ../../base/helm-exporter
   - ../../base/cloudnative-pg
   - ../../base/cert-manager
@@ -28,9 +30,10 @@ resources:
   - ../../base/reloader
   - ../../base/alloy
   - ../../base/dragonfly-operator
-  - ../../base/seaweedfs
+  #- ../../base/seaweedfs
   - ../../base/clickhouse-operator
   - ../../base/httpbin
+  - ../../base/httpbin/components/gw-api
   - ../../base/kro
   - ../../base/victoria-logs
   - ../../base/kyverno
