@@ -10,6 +10,7 @@ resources:
   - ../../base/cloudnative-pg
   - ../../base/longhorn
   - ../../base/kubelinks
+  - ../../base/n8n
   - ../../base/victoria-metrics-k8s-stack
   - ../../base/metrics-server
   - ../../base/metallb
