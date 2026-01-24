@@ -2,19 +2,19 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
-  name: shared-gateway
+  name: envoy-public
   namespace: envoy-gateway-system
 spec:
-  gatewayClassName: merged-eg
+  gatewayClassName: envoy-public
   listeners:
     - name: http
-      port: 8080
+      port: 80
       protocol: HTTP
       allowedRoutes:
         namespaces:
-          from: Same
+          from: All
     - name: https
-      port: 8443
+      port: 443
       protocol: HTTPS
       allowedRoutes:
         namespaces:

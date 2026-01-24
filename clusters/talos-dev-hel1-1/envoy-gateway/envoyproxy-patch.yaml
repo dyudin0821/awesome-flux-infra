@@ -1,0 +1,9 @@
+- op: add
+  path: /spec/provider
+  value:
+    type: Kubernetes
+    kubernetes:
+      envoyService:
+        type: LoadBalancer
+        annotations:
+          metallb.universe.tf/address-pool: public-pool

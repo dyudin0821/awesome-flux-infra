@@ -2,19 +2,19 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: GatewayClass
 metadata:
-  name: merged-eg
+  name: envoy-public
 spec:
   controllerName: gateway.envoyproxy.io/gatewayclass-controller
   parametersRef:
     group: gateway.envoyproxy.io
     kind: EnvoyProxy
-    name: custom-proxy-config
+    name: envoy-public-config
     namespace: envoy-gateway-system
 ---
 apiVersion: gateway.envoyproxy.io/v1alpha1
 kind: EnvoyProxy
 metadata:
-  name: custom-proxy-config
+  name: envoy-public-config
   namespace: envoy-gateway-system
 spec:
   mergeGateways: true

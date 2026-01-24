@@ -1,0 +1,6 @@
+- op: replace
+  path: /spec/listeners/1/tls/certificateRefs/0/name
+  value: wildcard-gateway-tls
+- op: replace
+  path: /spec/listeners/1/tls/certificateRefs/0/namespace
+  value: envoy-gateway-system

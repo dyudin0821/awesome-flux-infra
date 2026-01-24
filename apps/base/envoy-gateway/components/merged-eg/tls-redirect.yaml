@@ -6,12 +6,12 @@ metadata:
   namespace: envoy-gateway-system
 spec:
   parentRefs:
-    - name: shared-gateway
+    - name: envoy-public
       sectionName: http
   rules:
     - filters:
         - type: RequestRedirect
           requestRedirect:
             scheme: https
-            port: 8443
+            port: 443
             statusCode: 301
