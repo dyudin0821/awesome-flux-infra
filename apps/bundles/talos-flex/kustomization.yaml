@@ -9,7 +9,7 @@ resources:
   - ../../base/reflector
   - ../../base/cloudnative-pg
   - ../../base/longhorn
-  - ../../base/n8n
+  #- ../../base/n8n
   - ../../base/victoria-metrics-k8s-stack
   - ../../base/metrics-server
   - ../../base/metallb
