@@ -17,7 +17,7 @@
                   podAffinityTerm:
                     labelSelector:
                       matchLabels:
-                        gateway.envoyproxy.io/owning-gateway-name: envoy-public
+                        gateway.envoyproxy.io/owning-gatewayclass: envoy-public
                     topologyKey: kubernetes.io/hostname
       envoyService:
         type: LoadBalancer

@@ -7,4 +7,4 @@ spec:
   minAvailable: 1
   selector:
     matchLabels:
-      gateway.envoyproxy.io/owning-gateway-name: envoy-public
+      gateway.envoyproxy.io/owning-gatewayclass: envoy-public
