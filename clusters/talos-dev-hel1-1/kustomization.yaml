@@ -8,6 +8,8 @@ resources:
   - external-dns
   - cert-manager
   - victoria-metrics-k8s-stack
+  - pg-remnawave
+  - remnawave
 patches:
   - path: external-dns/helm-release-patch.yaml
     target:
