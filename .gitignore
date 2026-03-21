@@ -14,7 +14,6 @@ secrets/
 *.pfx
 *-secret.yaml
 *-secrets.yaml
-secret-*.yaml
 secrets-*.yaml
 
 # Kubeconfig
