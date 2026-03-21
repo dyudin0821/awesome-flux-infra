@@ -20,5 +20,5 @@ spec:
   upgrade:
     remediation:
       retries: 3
-  # Default values: https://github.com/kkirara/KubeLinks/blob/master/charts/kubelinks/values.yaml
-  #values:
+      # Default values: https://github.com/kkirara/KubeLinks/blob/master/charts/kubelinks/values.yaml
+      #values:

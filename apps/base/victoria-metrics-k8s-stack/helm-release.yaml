@@ -42,12 +42,12 @@ spec:
       operator:
         disable_prometheus_converter: false
         enable_converter_ownership: true
-      # resources:
-      #   limits:
-      #     memory: 100Mi
-      #   requests:
-      #     cpu: 14m
-      #     memory: 100Mi
+        # resources:
+        #   limits:
+        #     memory: 100Mi
+        #   requests:
+        #     cpu: 14m
+        #     memory: 100Mi
     kube-state-metrics:
       prometheusScrape: false
       selfMonitor:
@@ -95,12 +95,12 @@ spec:
           searchNamespace: ALL
         dashboards:
           searchNamespace: ALL
-        # resources:
-        #   limits:
-        #     memory: 150Mi
-        #   requests:
-        #     cpu: 10m
-        #     memory: 150Mi
+          # resources:
+          #   limits:
+          #     memory: 150Mi
+          #   requests:
+          #     cpu: 10m
+          #     memory: 150Mi
       plugins:
         - https://storage.googleapis.com/integration-artifacts/grafana-lokiexplore-app/grafana-lokiexplore-app-latest.zip;grafana-lokiexplore-app
         - victoriametrics-logs-datasource
@@ -117,32 +117,32 @@ spec:
       ingress:
         hosts:
           - grafana.${cluster_subdomain}
-      # dashboards:
-      #   default:
-      #     istio-mesh-dashboard:
-      #       gnetId: 7639
-      #       revision: 194
-      #       datasource: VictoriaMetrics
-      #     istio-service-dashboard:
-      #       gnetId: 7636
-      #       revision: 194
-      #       datasource: VictoriaMetrics
-      #     istio-workload-dashboard:
-      #       gnetId: 7630
-      #       revision: 194
-      #       datasource: VictoriaMetrics
-      #     istio-performance-dashboard:
-      #       gnetId: 11829
-      #       revision: 194
-      #       datasource: VictoriaMetrics
-      #     istio-control-plane-dashboard:
-      #       gnetId: 7645
-      #       revision: 194
-      #       datasource: VictoriaMetrics
-      #     istio-wasm-dashboard:
-      #       gnetId: 13277
-      #       revision: 151
-      #       datasource: VictoriaMetrics
+          # dashboards:
+          #   default:
+          #     istio-mesh-dashboard:
+          #       gnetId: 7639
+          #       revision: 194
+          #       datasource: VictoriaMetrics
+          #     istio-service-dashboard:
+          #       gnetId: 7636
+          #       revision: 194
+          #       datasource: VictoriaMetrics
+          #     istio-workload-dashboard:
+          #       gnetId: 7630
+          #       revision: 194
+          #       datasource: VictoriaMetrics
+          #     istio-performance-dashboard:
+          #       gnetId: 11829
+          #       revision: 194
+          #       datasource: VictoriaMetrics
+          #     istio-control-plane-dashboard:
+          #       gnetId: 7645
+          #       revision: 194
+          #       datasource: VictoriaMetrics
+          #     istio-wasm-dashboard:
+          #       gnetId: 13277
+          #       revision: 151
+          #       datasource: VictoriaMetrics
     prometheus-node-exporter:
       enabled: true
     kubeProxy:
@@ -183,16 +183,16 @@ spec:
         extraArgs:
           maxLabelsPerTimeseries: "40"
           search.maxUniqueTimeseries: "500000"
-        # resources:
-        #   limits:
-        #     memory: "300Mi"
-        #   requests:
-        #     cpu: 300m
-        #     memory: "300Mi"
-        # storage:
-        #   resources:
-        #     requests:
-        #       storage: 10Gi
+          # resources:
+          #   limits:
+          #     memory: "300Mi"
+          #   requests:
+          #     cpu: 300m
+          #     memory: "300Mi"
+          # storage:
+          #   resources:
+          #     requests:
+          #       storage: 10Gi
     vmagent:
       spec:
         # affinity:
@@ -209,31 +209,12 @@ spec:
           cluster: ${cluster_name}
         extraArgs:
           promscrape.maxScrapeSize: "33554432"
-        # resources:
-        #   limits:
-        #     memory: "500Mi"
-        #   requests:
-        #     cpu: 87m
-        #     memory: "500Mi"
-        ## istio hack for scraping pods from with istio mesh strict mtls
-        podMetadata:
-          annotations:
-            proxy.istio.io/config: |-
-              proxyMetadata:
-                OUTPUT_CERTS: /etc/istio-certs/
-            sidecar.istio.io/inject: "true"
-            sidecar.istio.io/rewriteAppHTTPProbers: "true"
-            sidecar.istio.io/userVolume: '[{"name": "istio-certs", "emptyDir": {"medium": "Memory"}}]'
-            sidecar.istio.io/userVolumeMount: '[{"name": "istio-certs", "mountPath": "/etc/istio-certs/"}]'
-            traffic.sidecar.istio.io/includeOutboundIPRanges: ""
-        volumeMounts:
-          - mountPath: /etc/istio-certs/
-            name: istio-certs
-            readOnly: true
-        volumes:
-          - emptyDir:
-              medium: Memory
-            name: istio-certs
+          # resources:
+          #   limits:
+          #     memory: "500Mi"
+          #   requests:
+          #     cpu: 87m
+          #     memory: "500Mi"
     vmalert:
       spec:
         # affinity:
@@ -248,12 +229,12 @@ spec:
         #         topologyKey: failure-domain.beta.kubernetes.io/zone
         extraArgs:
           external.url: "https://grafana.${cluster_subdomain}"
-        # resources:
-        #   limits:
-        #     memory: "250Mi"
-        #   requests:
-        #     cpu: 35m
-        #     memory: "250Mi"
+          # resources:
+          #   limits:
+          #     memory: "250Mi"
+          #   requests:
+          #     cpu: 35m
+          #     memory: "250Mi"
     alertmanager:
       spec:
         disableNamespaceMatcher: true

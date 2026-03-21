@@ -34,7 +34,7 @@ for cluster_path in "$CLUSTERS_DIR"/*/; do
   kustomize build . --load-restrictor LoadRestrictionsNone > "/tmp/${cluster_name}-new.yaml"
 
   # Return to original directory
-  cd - > /dev/null
+  cd - > /dev/null || exit
 done
 
 git fetch --all
@@ -53,7 +53,7 @@ for cluster_path in "$CLUSTERS_DIR"/*/; do
   kustomize build . --load-restrictor LoadRestrictionsNone > "/tmp/${cluster_name}-main.yaml"
 
   # Return to original directory
-  cd - > /dev/null
+  cd - > /dev/null || exit
 done
 
 git checkout -f "$current_branch" &> /dev/null

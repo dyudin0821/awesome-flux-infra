@@ -16,5 +16,5 @@ spec:
   install:
     remediation:
       retries: 3
-  # Defaults: https://github.com/emberstack/kubernetes-reflector/blob/main/src/helm/reflector/values.yaml
-  # values:
+      # Defaults: https://github.com/emberstack/kubernetes-reflector/blob/main/src/helm/reflector/values.yaml
+      # values:

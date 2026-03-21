@@ -1,0 +1,26 @@
+# yamlfmt configuration for Flux GitOps repository
+# Documentation: https://github.com/google/yamlfmt
+
+formatter:
+  type: basic
+  # Indentation
+  indent: 2
+  # Include document start marker (---)
+  include_document_start: false
+  # Line ending
+  line_ending: lf
+  # Retain line breaks in scalars
+  retain_line_breaks: true
+  # Trim trailing whitespace
+  trim_trailing_whitespace: true
+  # Scan folded as literal (for multiline strings)
+  scan_folded_as_literal: false
+
+# Exclude patterns (gitignore-style)
+exclude:
+  - .git/
+  - .github/
+  - node_modules/
+  - .vscode/
+  - '**/*.sops.yaml'
+  - '**/*.age'

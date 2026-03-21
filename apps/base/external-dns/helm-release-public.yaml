@@ -22,7 +22,7 @@ spec:
   # Defaults: https://github.com/kubernetes-sigs/external-dns/blob/master/charts/external-dns/values.yaml
   values:
     sources:
-      - gateway-httproute   # Gateway API HTTPRoute support (for Envoy Gateway)
+      - gateway-httproute # Gateway API HTTPRoute support (for Envoy Gateway)
     txtPrefix: txt.
     domainFilters:
       - ${cluster_subdomain}

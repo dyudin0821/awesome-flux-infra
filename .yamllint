@@ -1,0 +1,91 @@
+# yamllint configuration for Flux GitOps repository
+# Documentation: https://yamllint.readthedocs.io/
+
+extends: default
+
+# Define YAML file patterns
+yaml-files:
+  - '*.yaml'
+  - '*.yml'
+  - '.yamllint'
+
+rules:
+  # Line length - disabled
+  line-length: disable
+
+  # Document start (---) - not required for K8s manifests
+  document-start: disable
+
+  # Document end (...) - typically not used in K8s manifests
+  document-end: disable
+
+  # Truthy values - allow common Kubernetes values
+  truthy:
+    allowed-values: ['true', 'false', 'yes', 'no', 'on', 'off']
+    check-keys: false
+
+  # Comments - require space after # and proper indentation
+  comments:
+    min-spaces-from-content: 1
+    require-starting-space: true
+    ignore-shebangs: true
+
+  # Indentation - 2 spaces, but allow inconsistent (don't fail)
+  indentation:
+    spaces: 2
+    indent-sequences: whatever # Allow any consistent style
+    check-multi-line-strings: false
+
+  # Braces for inline mappings
+  braces:
+    min-spaces-inside: 0
+    max-spaces-inside: 1
+    min-spaces-inside-empty: 0
+    max-spaces-inside-empty: 0
+
+  # Brackets for inline sequences
+  brackets:
+    min-spaces-inside: 0
+    max-spaces-inside: 0
+    min-spaces-inside-empty: 0
+    max-spaces-inside-empty: 0
+
+  # Empty lines
+  empty-lines:
+    max: 2
+    max-start: 0
+    max-end: 0
+
+  # Colons
+  colons:
+    max-spaces-before: 0
+    max-spaces-after: 1
+
+  # Hyphens (list items)
+  hyphens:
+    max-spaces-after: 1
+
+  # Commas in flow sequences
+  commas:
+    max-spaces-before: 0
+    min-spaces-after: 1
+    max-spaces-after: 1
+
+  # Disallow quoted strings (too strict for Helm/K8s)
+  quoted-strings: disable
+
+  # Require newline at end of file
+  new-line-at-end-of-file: enable
+
+  # Trailing spaces
+  trailing-spaces: enable
+
+  # Key duplicates
+  key-duplicates: enable
+
+# Ignore specific paths (if needed)
+ignore: |-
+  .git/
+  .github/
+  node_modules/
+  .vscode/

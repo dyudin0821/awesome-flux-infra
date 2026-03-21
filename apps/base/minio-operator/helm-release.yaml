@@ -20,5 +20,5 @@ spec:
   upgrade:
     remediation:
       retries: 3
-  # Default values: https://github.com/minio/operator/blob/master/helm/operator/values.yaml
-  #values:
+      # Default values: https://github.com/minio/operator/blob/master/helm/operator/values.yaml
+      #values:

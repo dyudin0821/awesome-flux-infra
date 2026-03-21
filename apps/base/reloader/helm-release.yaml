@@ -16,5 +16,5 @@ spec:
   install:
     remediation:
       retries: 3
-  # Defaults: https://github.com/stakater/Reloader/blob/master/deployments/kubernetes/chart/reloader/values.yaml
-  # values:
+      # Defaults: https://github.com/stakater/Reloader/blob/master/deployments/kubernetes/chart/reloader/values.yaml
+      # values:

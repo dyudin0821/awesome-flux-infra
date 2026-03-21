@@ -9,7 +9,6 @@ resources:
   - ../../base/metrics-server
   - ../../base/blackbox-exporter
   - ../../base/keda
-  - ../../base/istio
   - ../../base/envoy-gateway
   - ../../base/helm-exporter
   - ../../base/cloudnative-pg

@@ -35,7 +35,7 @@ spec:
       capabilities:
         drop:
           - ALL
-      #runAsNonRoot: true
+          #runAsNonRoot: true
     config:
       helmRegistries:
         override:

@@ -28,6 +28,6 @@ spec:
     prometheus:
       servicemonitor:
         enabled: true
-    # serviceAccount:
-    #   annotations:
-    #     eks.amazonaws.com/role-arn: arn:aws:iam::${aws_account_id}:role/${cluster_name}-irsa-cert-manager
+        # serviceAccount:
+        #   annotations:
+        #     eks.amazonaws.com/role-arn: arn:aws:iam::${aws_account_id}:role/${cluster_name}-irsa-cert-manager

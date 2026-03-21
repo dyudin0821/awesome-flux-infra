@@ -16,5 +16,5 @@ spec:
   install:
     remediation:
       retries: 3
-  # Defaults: https://github.com/rowanruseler/helm-charts/blob/main/charts/pgadmin4/values.yaml
-  # values:
+      # Defaults: https://github.com/rowanruseler/helm-charts/blob/main/charts/pgadmin4/values.yaml
+      # values:

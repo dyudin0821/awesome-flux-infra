@@ -35,7 +35,6 @@ This repository provides a collection of infrastructure applications and add-ons
 - [cluster-autoscaler](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/cluster-autoscaler) - a component that automatically adjusts the size of a Kubernetes Cluster
 - [external-dns](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/external-dns) - synchronizes exposed Kubernetes Services and Ingresses with DNS providers.
 - [external-secrets](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/external-secrets) - External Secrets Operator (ESO) is used to synchronize secrets from external APIs into Kubernetes
-- [Istio ServiceMesh](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/istio) - ServiceMesh based on Envoy
 - [Envoy Gateway](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/envoy-gateway) - an API Gateway implementation based on Envoy proxy
 ### Observability Components
 - [Victoria Metrics (victoria-metrics-k8s-stack)](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/victoria-metrics-k8s-stack) - Metrics Database
@@ -47,7 +46,7 @@ This repository provides a collection of infrastructure applications and add-ons
 - [blackbox-exporter](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/blackbox-exporter) - allows blackbox probing of endpoints
 - [helm-exporter](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/helm-exporter) - Exports Helm release, chart, and version metrics in Prometheus format.
 - [k8s-event-logger](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/k8s-event-logger) - This tool simply watches Kubernetes Events and logs them to stdout in JSON to be collected and stored by your logging solution
-- [kubelinks](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/kubelinks) - Provides a web page with links to all URLs from Kubernetes ingresses and Istio gateways.
+- [kubelinks](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/kubelinks) - Provides a web page with links to all URLs from Kubernetes ingresses and Gateway API gateways.
 - [metrics-server](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/metrics-server) - collects resource metrics from Kubelets and exposes them in Kubernetes apiserver
 - [oomkill-exporter](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/oomkill-exporter) - Exports metrics about Out-Of-Memory (OOM) events in Kubernetes
 - [x509-certificate-exporter](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/x509-certificate-exporter) - Exports metrics about x509 certificate expiration and validity.

@@ -60,12 +60,6 @@ spec:
       namespace: cnpg-system
     - kind: HelmRelease
       name: "*"
-      namespace: istio-ingress
-    - kind: HelmRelease
-      name: "*"
-      namespace: istio-system
-    - kind: HelmRelease
-      name: "*"
       namespace: jenkins
     - kind: HelmRelease
       name: "*"

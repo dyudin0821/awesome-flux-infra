@@ -1,4 +1,3 @@
----
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
@@ -93,36 +92,6 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: kedacore
----
-apiVersion: helm.toolkit.fluxcd.io/v2
-kind: HelmRelease
-metadata:
-  name: istiod
-  namespace: istio-system
-spec:
-  chart:
-    spec:
-      version: "1.29.1"
-      chart: istiod
-      sourceRef:
-        kind: HelmRepository
-        name: istio
-        namespace: istio-system
----
-apiVersion: helm.toolkit.fluxcd.io/v2
-kind: HelmRelease
-metadata:
-  name: istio-ingress-private
-  namespace: istio-ingress
-spec:
-  chart:
-    spec:
-      version: "1.29.1"
-      chart: gateway
-      sourceRef:
-        kind: HelmRepository
-        name: istio
-        namespace: istio-system
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
