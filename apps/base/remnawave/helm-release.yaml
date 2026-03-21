@@ -1,0 +1,123 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: remnawave
+  namespace: remnawave
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 4.5.0
+      interval: 30m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: remnawave
+  values:
+    controllers:
+      remnawave:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          app:
+            image:
+              repository: remnawave/backend
+              tag: 2.6.4
+            env:
+              DATABASE_URL:
+                valueFrom:
+                  secretKeyRef:
+                    name: remnawave-pg-app-secret
+                    key: uri
+              FRONT_END_DOMAIN: "*"
+              SUB_PUBLIC_DOMAIN: "access.${cluster_subdomain}/sub"
+              REDIS_HOST: remnawave-redis.remnawave.svc.cluster.local
+              REDIS_PORT: "6379"
+              REDIS_PASSWORD: valkey
+            envFrom:
+              - secretRef:
+                  name: remnawave-secret
+            probes:
+              liveness:
+                enabled: true
+              readiness:
+                enabled: true
+              startup:
+                enabled: true
+                spec:
+                  failureThreshold: 30
+                  periodSeconds: 5
+            resources:
+              requests:
+                cpu: 100m
+                memory: 512Mi
+              limits:
+                memory: 1Gi
+      redis:
+        containers:
+          redis:
+            image:
+              repository: ghcr.io/valkey-io/valkey
+              tag: 9.0.3
+            env:
+              VALKEY_EXTRA_FLAGS: "--requirepass valkey"
+            resources:
+              requests:
+                cpu: 50m
+                memory: 128Mi
+              limits:
+                memory: 512Mi
+
+      subscription-page:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          app:
+            image:
+              repository: remnawave/subscription-page
+              tag: 7.1.7
+            env:
+              REMNAWAVE_PANEL_URL: http://remnawave.remnawave.svc.cluster.local:3000
+              CUSTOM_SUB_PREFIX: sub
+              MARZBAN_LEGACY_LINK_ENABLED: "true"
+            envFrom:
+              - secretRef:
+                  name: remnawave-secret
+            probes:
+              liveness:
+                enabled: true
+              readiness:
+                enabled: true
+              startup:
+                enabled: true
+                spec:
+                  failureThreshold: 30
+                  periodSeconds: 5
+            resources:
+              requests:
+                cpu: 50m
+                memory: 256Mi
+              limits:
+                memory: 512Mi
+
+    service:
+      app:
+        controller: remnawave
+        ports:
+          http:
+            port: 3000
+
+      redis:
+        controller: redis
+        ports:
+          http:
+            port: 6379
+
+      subscription-page:
+        controller: subscription-page
+        ports:
+          http:
+            port: 3010

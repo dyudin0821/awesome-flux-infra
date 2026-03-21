@@ -1,0 +1,9 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: bjw-s
+  namespace: remnawave
+spec:
+  interval: 120m
+  url: https://bjw-s.github.io/helm-charts
