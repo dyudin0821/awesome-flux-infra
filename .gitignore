@@ -1,0 +1,63 @@
+# Flux
+*.age
+*.asc
+*.gpg
+*.enc
+
+# Secrets and sensitive data
+secrets/
+*.secret
+*.key
+*.pem
+*.crt
+*.p12
+*.pfx
+*-secret.yaml
+*-secrets.yaml
+secret-*.yaml
+secrets-*.yaml
+
+# Kubeconfig
+kubeconfig
+*.kubeconfig
+config.yaml
+
+# SOPS
+.decrypted~*
+*.decrypted
+
+# Terraform (if used alongside)
+*.tfstate
+*.tfstate.*
+*.tfvars
+.terraform/
+.terraform.lock.hcl
+
+# IDE and editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Backup files
+*.bak
+*.backup
+*.old
+
+# Logs
+*.log
+
+# Temporary files
+tmp/
+temp/
+.tmp/
+
+# Local overrides
+local/
+*.local
+
+# Build outputs (if any)
+dist/
+build/
