@@ -81,7 +81,7 @@ spec:
             env:
               REMNAWAVE_PANEL_URL: http://remnawave.remnawave.svc.cluster.local:3000
               CUSTOM_SUB_PREFIX: sub
-              MARZBAN_LEGACY_LINK_ENABLED: "true"
+              MARZBAN_LEGACY_LINK_ENABLED: "false"
             envFrom:
               - secretRef:
                   name: remnawave-secret
