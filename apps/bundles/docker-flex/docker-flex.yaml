@@ -6,7 +6,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "0.72.5"
+      version: "0.80.0"
       chart: victoria-metrics-k8s-stack
       sourceRef:
         kind: HelmRepository
@@ -72,7 +72,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "11.8.0"
+      version: "11.9.1"
       chart: prometheus-blackbox-exporter
       sourceRef:
         kind: HelmRepository
@@ -116,7 +116,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "0.27.1"
+      version: "0.28.2"
       chart: cloudnative-pg
       sourceRef:
         kind: HelmRepository
@@ -131,7 +131,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "v1.20.0"
+      version: "v1.20.2"
       chart: cert-manager
       sourceRef:
         kind: HelmRepository
@@ -146,7 +146,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "10.0.21"
+      version: "10.0.46"
       chart: reflector
       sourceRef:
         kind: HelmRepository
@@ -161,7 +161,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "2.2.0"
+      version: "2.5.0"
       chart: external-secrets
       sourceRef:
         kind: HelmRepository
@@ -176,7 +176,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "5.9.9"
+      version: "5.9.22"
       chart: jenkins
       sourceRef:
         kind: HelmRepository
@@ -191,7 +191,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "9.4.7"
+      version: "9.5.15"
       chart: argo-cd
       sourceRef:
         kind: HelmRepository
@@ -236,7 +236,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "1.19.0"
+      version: "1.21.0"
       chart: airflow
       sourceRef:
         kind: HelmRepository
@@ -266,7 +266,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "6.53.0"
+      version: "7.0.0"
       chart: loki
       sourceRef:
         kind: HelmRepository
@@ -290,7 +290,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "1.6.1"
+      version: "1.8.2"
       chart: alloy
       sourceRef:
         kind: HelmRepository
@@ -305,7 +305,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "3.3.1"
+      version: "3.3.2"
       chart: eck-operator
       sourceRef:
         kind: HelmRepository
@@ -320,7 +320,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "3.19.1"
+      version: "3.21.0"
       chart: x509-certificate-exporter
       sourceRef:
         kind: HelmRepository
@@ -335,7 +335,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "2.2.8"
+      version: "2.2.11"
       chart: reloader
       sourceRef:
         kind: HelmRepository
@@ -365,7 +365,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "0.26.0"
+      version: "0.26.3"
       chart: altinity-clickhouse-operator
       sourceRef:
         kind: HelmRepository
@@ -379,7 +379,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "0.11.28"
+      version: "0.12.5"
       chart: victoria-logs-single
       sourceRef:
         kind: HelmRepository
@@ -394,7 +394,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "3.7.1"
+      version: "3.8.1"
       chart: kyverno
       sourceRef:
         kind: HelmRepository

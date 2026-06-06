@@ -6,7 +6,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "0.27.1"
+      version: "0.28.2"
       chart: cloudnative-pg
       sourceRef:
         kind: HelmRepository
@@ -28,7 +28,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "1.29.1"
+      version: "1.29.2"
       chart: istiod
       sourceRef:
         kind: HelmRepository
@@ -48,7 +48,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "1.29.1"
+      version: "1.29.2"
       chart: gateway
       sourceRef:
         kind: HelmRepository

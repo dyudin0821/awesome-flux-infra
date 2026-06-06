@@ -53,7 +53,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "11.8.0"
+      version: "11.9.0"
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
@@ -73,7 +73,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "1.29.0"
+      version: "1.29.1"
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
@@ -83,7 +83,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "1.29.0"
+      version: "1.29.1"
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
@@ -113,7 +113,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "v1.19.4"
+      version: "v1.20.0"
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
@@ -123,7 +123,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "10.0.14"
+      version: "10.0.22"
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
@@ -133,7 +133,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "2.0.1"
+      version: "2.2.0"
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
@@ -153,7 +153,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "9.4.6"
+      version: "9.4.15"
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
@@ -163,7 +163,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "0.50.1"
+      version: "0.51.0"
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
@@ -173,7 +173,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "1.59.0"
+      version: "1.62.0"
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
@@ -203,7 +203,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "6.53.0"
+      version: "6.55.0"
   values:
     gateway:
       affinity:
@@ -222,7 +222,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "1.6.0"
+      version: "1.6.2"
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
@@ -252,7 +252,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "2.2.8"
+      version: "2.2.9"
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
@@ -272,7 +272,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "0.26.0"
+      version: "0.26.1"
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
