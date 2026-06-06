@@ -6,7 +6,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "7.1.288"
+      version: "10.0.46"
       chart: reflector
       sourceRef:
         kind: HelmRepository
@@ -20,7 +20,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "0.22.1"
+      version: "0.28.2"
       chart: cloudnative-pg
       sourceRef:
         kind: HelmRepository
@@ -34,7 +34,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "1.1.1"
+      version: "2.5.0"
       chart: external-secrets
       sourceRef:
         kind: HelmRepository
@@ -48,7 +48,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "v1.19.1"
+      version: "v1.20.2"
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
@@ -58,7 +58,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "0.65.0"
+      version: "0.80.0"
   values:
     # Talos-specific configuration
     kubeEtcd:
