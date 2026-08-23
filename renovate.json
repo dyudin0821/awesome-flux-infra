@@ -1,19 +1,163 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:recommended"
+    "config:recommended",
+    ":dependencyDashboard",
+    ":semanticCommits"
   ],
-  "kubernetes": {
-    "managerFilePatterns": [
-      "/\\.yaml$/"
-    ]
-  },
+
+  "enabledManagers": ["flux", "kubernetes", "custom.regex"],
+
   "flux": {
     "managerFilePatterns": [
-      "/apps/base/.+\\.yaml$/",
-      "/apps/bundles/.+-flex/.+\\.yaml$/",
-      "/apps/bundles/.+-minimal/.+\\.yaml$/",
-      "/clusters/.+\\.yaml$/"
+      "/apps/base/.+\\.ya?ml$/",
+      "/apps/bundles/[^/]+-flex/[^/]+\\.ya?ml$/",
+      "/apps/bundles/[^/]+-minimal/[^/]+\\.ya?ml$/",
+      "/clusters/.+\\.ya?ml$/"
     ]
-  }
+  },
+
+  "kubernetes": {
+    "managerFilePatterns": [
+      "/apps/base/httpbin/httpbin\\.ya?ml$/",
+      "/apps/base/oomkill-exporter/daemonset\\.ya?ml$/"
+    ]
+  },
+
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "CloudNative-PG Cluster imageName field",
+      "managerFilePatterns": ["/clusters/.+/cluster\\.ya?ml$/"],
+      "matchStrings": [
+        "imageName:\\s+(?<depName>ghcr\\.io/cloudnative-pg/[^:]+):(?<currentValue>[^\\s]+)"
+      ],
+      "datasourceTemplate": "docker",
+      "versioningTemplate": "docker"
+    }
+  ],
+
+  "schedule": ["before 6am on weekdays"],
+  "timezone": "Europe/Moscow",
+  "minimumReleaseAge": "3 days",
+
+  "prConcurrentLimit": 5,
+  "prHourlyLimit": 2,
+  "semanticCommits": "enabled",
+  "labels": ["renovate", "dependencies"],
+
+  "packageRules": [
+    {
+      "description": "Observability stack — group minor+patch into one PR",
+      "matchManagers": ["flux"],
+      "matchPackageNames": [
+        "victoria-metrics-k8s-stack",
+        "victoria-logs-single",
+        "grafana",
+        "prometheus-blackbox-exporter",
+        "helm-exporter",
+        "x509-certificate-exporter",
+        "k8s-event-logger",
+        "kubelinks",
+        "alloy",
+        "loki"
+      ],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "observability (minor+patch)",
+      "addLabels": ["observability"]
+    },
+
+    {
+      "description": "Database operators — manual review required (CRD and schema changes)",
+      "matchManagers": ["flux"],
+      "matchPackageNames": [
+        "cloudnative-pg",
+        "strimzi-kafka-operator",
+        "altinity-clickhouse-operator",
+        "eck-operator"
+      ],
+      "automerge": false,
+      "dependencyDashboardApproval": true,
+      "addLabels": ["database", "needs-review"]
+    },
+
+    {
+      "description": "Security components — manual review required",
+      "matchManagers": ["flux"],
+      "matchPackageNames": ["cert-manager", "external-secrets", "kyverno"],
+      "automerge": false,
+      "addLabels": ["security"]
+    },
+
+    {
+      "description": "Storage — manual review required (data loss risk)",
+      "matchManagers": ["flux"],
+      "matchPackageNames": ["longhorn", "seaweedfs"],
+      "automerge": false,
+      "addLabels": ["storage", "needs-review"]
+    },
+
+    {
+      "description": "Networking — manual review for patch, dashboard approval for minor+",
+      "matchManagers": ["flux"],
+      "matchPackageNames": [
+        "metallb",
+        "envoy-gateway",
+        "aws-load-balancer-controller",
+        "external-dns"
+      ],
+      "automerge": false,
+      "addLabels": ["networking"]
+    },
+
+    {
+      "description": "Low-risk utilities — automerge patch updates",
+      "matchManagers": ["flux"],
+      "matchPackageNames": [
+        "metrics-server",
+        "reloader",
+        "reflector",
+        "keda"
+      ],
+      "matchUpdateTypes": ["patch"],
+      "automerge": true,
+      "automergeType": "pr",
+      "platformAutomerge": true
+    },
+
+    {
+      "description": "CloudNative-PG images — major-only tags, always manual",
+      "matchManagers": ["custom.regex"],
+      "matchPackageNames": [
+        "ghcr.io/cloudnative-pg/postgresql",
+        "ghcr.io/cloudnative-pg/postgis"
+      ],
+      "automerge": false,
+      "dependencyDashboardApproval": true,
+      "addLabels": ["database", "cnpg", "needs-review"]
+    },
+
+    {
+      "description": "Docker image patches — automerge",
+      "matchManagers": ["kubernetes"],
+      "matchUpdateTypes": ["patch"],
+      "automerge": true,
+      "automergeType": "pr"
+    },
+
+    {
+      "description": "All major updates require dashboard approval",
+      "matchUpdateTypes": ["major"],
+      "automerge": false,
+      "dependencyDashboardApproval": true,
+      "addLabels": ["major-update"]
+    },
+
+    {
+      "description": "Skip prerelease versions globally",
+      "matchUpdateTypes": ["patch", "minor", "major"],
+      "ignoreUnstable": true,
+      "respectLatest": true
+    }
+  ]
 }
