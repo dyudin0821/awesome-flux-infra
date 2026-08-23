@@ -206,7 +206,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "0.51.0"
+      version: "1.2.0"
       chart: strimzi-kafka-operator
       sourceRef:
         kind: HelmRepository
@@ -236,7 +236,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "1.21.0"
+      version: "1.22.0"
       chart: airflow
       sourceRef:
         kind: HelmRepository
@@ -320,7 +320,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "3.21.0"
+      version: "4.2.0"
       chart: x509-certificate-exporter
       sourceRef:
         kind: HelmRepository
@@ -335,7 +335,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "2.2.11"
+      version: "2.2.16"
       chart: reloader
       sourceRef:
         kind: HelmRepository
@@ -365,7 +365,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "0.26.3"
+      version: "0.27.3"
       chart: altinity-clickhouse-operator
       sourceRef:
         kind: HelmRepository

@@ -40,8 +40,8 @@
   "timezone": "Europe/Moscow",
   "minimumReleaseAge": "3 days",
 
-  "prConcurrentLimit": 5,
-  "prHourlyLimit": 2,
+  "prConcurrentLimit": 10,
+  "prHourlyLimit": 10,
   "semanticCommits": "enabled",
   "labels": ["renovate", "dependencies"],
 
@@ -76,7 +76,6 @@
         "eck-operator"
       ],
       "automerge": false,
-      "dependencyDashboardApproval": true,
       "addLabels": ["database", "needs-review"]
     },
 
@@ -132,7 +131,6 @@
         "ghcr.io/cloudnative-pg/postgis"
       ],
       "automerge": false,
-      "dependencyDashboardApproval": true,
       "addLabels": ["database", "cnpg", "needs-review"]
     },
 
@@ -148,7 +146,6 @@
       "description": "All major updates require dashboard approval",
       "matchUpdateTypes": ["major"],
       "automerge": false,
-      "dependencyDashboardApproval": true,
       "addLabels": ["major-update"]
     }
   ]
