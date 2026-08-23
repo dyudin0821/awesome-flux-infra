@@ -410,7 +410,7 @@ spec:
   releaseName: apache-superset
   chart:
     spec:
-      version: "0.15.2"
+      version: "0.22.4"
       chart: superset
       sourceRef:
         kind: HelmRepository
