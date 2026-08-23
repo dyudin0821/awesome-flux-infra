@@ -77,7 +77,7 @@ spec:
           app:
             image:
               repository: remnawave/subscription-page
-              tag: 7.1.7
+              tag: 8.0.0
             env:
               REMNAWAVE_PANEL_URL: http://remnawave-app.remnawave.svc.cluster.local:3000
               CUSTOM_SUB_PREFIX: sub
