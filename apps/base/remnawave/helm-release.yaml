@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 4.5.0
+      version: 4.6.2
       interval: 30m
       sourceRef:
         kind: HelmRepository
@@ -60,7 +60,7 @@ spec:
           redis:
             image:
               repository: ghcr.io/valkey-io/valkey
-              tag: 9.0.3
+              tag: 9.1.1
             env:
               VALKEY_EXTRA_FLAGS: "--requirepass valkey"
             resources:

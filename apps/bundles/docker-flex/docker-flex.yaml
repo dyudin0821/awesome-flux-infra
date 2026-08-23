@@ -6,7 +6,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "0.80.0"
+      version: "0.91.0"
       chart: victoria-metrics-k8s-stack
       sourceRef:
         kind: HelmRepository
@@ -54,7 +54,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "3.13.0"
+      version: "3.14.0"
       chart: metrics-server
       sourceRef:
         kind: HelmRepository
@@ -72,7 +72,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "11.9.1"
+      version: "11.17.2"
       chart: prometheus-blackbox-exporter
       sourceRef:
         kind: HelmRepository
@@ -87,7 +87,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "2.19.0"
+      version: "2.20.2"
       chart: keda
       sourceRef:
         kind: HelmRepository
@@ -116,7 +116,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "0.28.2"
+      version: "0.29.0"
       chart: cloudnative-pg
       sourceRef:
         kind: HelmRepository
@@ -131,7 +131,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "v1.20.2"
+      version: "v1.21.1"
       chart: cert-manager
       sourceRef:
         kind: HelmRepository
@@ -161,7 +161,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "2.5.0"
+      version: "2.9.0"
       chart: external-secrets
       sourceRef:
         kind: HelmRepository
@@ -176,7 +176,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "5.9.22"
+      version: "5.9.54"
       chart: jenkins
       sourceRef:
         kind: HelmRepository
@@ -191,7 +191,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "9.5.15"
+      version: "10.4.0"
       chart: argo-cd
       sourceRef:
         kind: HelmRepository
@@ -206,7 +206,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "0.51.0"
+      version: "1.2.0"
       chart: strimzi-kafka-operator
       sourceRef:
         kind: HelmRepository
@@ -221,7 +221,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "1.62.0"
+      version: "1.66.0"
       chart: pgadmin4
       sourceRef:
         kind: HelmRepository
@@ -236,7 +236,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "1.21.0"
+      version: "1.22.0"
       chart: airflow
       sourceRef:
         kind: HelmRepository
@@ -266,7 +266,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "7.0.0"
+      version: "7.3.0"
       chart: loki
       sourceRef:
         kind: HelmRepository
@@ -290,7 +290,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "1.8.2"
+      version: "1.11.1"
       chart: alloy
       sourceRef:
         kind: HelmRepository
@@ -305,7 +305,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "3.3.2"
+      version: "3.5.0"
       chart: eck-operator
       sourceRef:
         kind: HelmRepository
@@ -320,7 +320,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "3.21.0"
+      version: "4.2.0"
       chart: x509-certificate-exporter
       sourceRef:
         kind: HelmRepository
@@ -335,7 +335,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "2.2.11"
+      version: "2.2.16"
       chart: reloader
       sourceRef:
         kind: HelmRepository
@@ -365,7 +365,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "0.26.3"
+      version: "0.27.3"
       chart: altinity-clickhouse-operator
       sourceRef:
         kind: HelmRepository
@@ -379,7 +379,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "0.12.5"
+      version: "0.13.9"
       chart: victoria-logs-single
       sourceRef:
         kind: HelmRepository
@@ -394,7 +394,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "3.8.1"
+      version: "3.9.0"
       chart: kyverno
       sourceRef:
         kind: HelmRepository
@@ -410,7 +410,7 @@ spec:
   releaseName: apache-superset
   chart:
     spec:
-      version: "0.15.2"
+      version: "0.22.4"
       chart: superset
       sourceRef:
         kind: HelmRepository
