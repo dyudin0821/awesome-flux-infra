@@ -126,7 +126,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "3.13.0"
+      version: "3.14.0"
       chart: metrics-server
       sourceRef:
         kind: HelmRepository
