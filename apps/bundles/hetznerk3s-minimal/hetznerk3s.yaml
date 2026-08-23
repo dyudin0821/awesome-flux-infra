@@ -23,41 +23,6 @@ spec:
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: istiod
-  namespace: istio-system
-spec:
-  chart:
-    spec:
-      version: "1.29.2"
-      chart: istiod
-      sourceRef:
-        kind: HelmRepository
-        name: istio
-        namespace: istio-system
-  values:
-    resources:
-      requests:
-        cpu: 10m
-        memory: 128Mi
----
-apiVersion: helm.toolkit.fluxcd.io/v2
-kind: HelmRelease
-metadata:
-  name: istio-ingress-private
-  namespace: istio-ingress
-spec:
-  chart:
-    spec:
-      version: "1.29.2"
-      chart: gateway
-      sourceRef:
-        kind: HelmRepository
-        name: istio
-        namespace: istio-system
----
-apiVersion: helm.toolkit.fluxcd.io/v2
-kind: HelmRelease
-metadata:
   name: pgadmin4
   namespace: pgadmin
 spec:
