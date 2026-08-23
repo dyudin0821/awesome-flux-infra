@@ -140,7 +140,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "v0.15.3"
+      version: "0.16.1"
       chart: metallb
       sourceRef:
         kind: HelmRepository
