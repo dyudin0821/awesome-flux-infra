@@ -37,5 +37,6 @@ jobs:
           token: ${{ secrets.RENOVATE_TOKEN }}
         env:
           LOG_LEVEL: ${{ inputs.logLevel || 'info' }}
+          RENOVATE_REPOSITORIES: ${{ github.repository }}
           # dry-run mode: 'full' logs all actions without creating PRs
           RENOVATE_DRY_RUN: ${{ inputs.dryRun == true && 'full' || '' }}
