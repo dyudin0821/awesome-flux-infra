@@ -12,9 +12,6 @@ secrets/
 *.crt
 *.p12
 *.pfx
-*-secret.yaml
-*-secrets.yaml
-secrets-*.yaml
 
 # Kubeconfig
 kubeconfig
@@ -60,3 +57,5 @@ local/
 # Build outputs (if any)
 dist/
 build/
+node_modules/
+package*.json

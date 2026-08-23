@@ -37,7 +37,6 @@
     }
   ],
 
-  "schedule": ["before 6am on weekdays"],
   "timezone": "Europe/Moscow",
   "minimumReleaseAge": "3 days",
 
@@ -151,13 +150,6 @@
       "automerge": false,
       "dependencyDashboardApproval": true,
       "addLabels": ["major-update"]
-    },
-
-    {
-      "description": "Skip prerelease versions globally",
-      "matchUpdateTypes": ["patch", "minor", "major"],
-      "ignoreUnstable": true,
-      "respectLatest": true
     }
   ]
 }
