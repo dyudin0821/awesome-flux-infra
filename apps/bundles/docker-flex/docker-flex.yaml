@@ -161,7 +161,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "2.9.0"
+      version: "2.10.0"
       chart: external-secrets
       sourceRef:
         kind: HelmRepository
