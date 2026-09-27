@@ -191,7 +191,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "10.9.1"
+      version: "10.9.2"
       chart: argo-cd
       sourceRef:
         kind: HelmRepository
