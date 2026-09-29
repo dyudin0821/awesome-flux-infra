@@ -4,7 +4,6 @@ resources:
   - namespace.yaml
   - helm-repo.yaml
   - helm-release-public.yaml
-  - helm-release-private.yaml
   - vm-rule.yaml
 configMapGenerator:
   - name: external-dns-dashboards
