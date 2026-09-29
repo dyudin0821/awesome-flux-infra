@@ -155,7 +155,8 @@ metadata:
 spec:
   chart:
     spec:
-      version: "1.12.1"
+      # Longhorn forbids skipping a minor version; step 1.10 -> 1.11 -> 1.12
+      version: "1.11.3"
       chart: longhorn
       sourceRef:
         kind: HelmRepository
