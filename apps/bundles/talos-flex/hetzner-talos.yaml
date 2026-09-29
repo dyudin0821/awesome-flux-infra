@@ -167,6 +167,8 @@ spec:
       defaultDataPath: /var/mnt/longhorn
       defaultReplicaCount: 2
       replicaSoftAntiAffinity: true
+      # Auto-evict/rebuild the last healthy replica elsewhere instead of blocking drains via PDB
+      nodeDrainPolicy: block-for-eviction-if-contains-last-replica
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
