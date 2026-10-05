@@ -359,6 +359,36 @@ spec:
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
+  name: httpbin
+  namespace: httpbin
+spec:
+  chart:
+    spec:
+      version: "5.2.1"
+      chart: app-template
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: httpbin
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: oomkill-exporter
+  namespace: oomkill-exporter
+spec:
+  chart:
+    spec:
+      version: "5.2.1"
+      chart: app-template
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: oomkill-exporter
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
   name: vls
   namespace: victoria-logs
 spec:

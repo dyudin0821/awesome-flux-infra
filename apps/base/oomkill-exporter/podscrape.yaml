@@ -9,4 +9,4 @@ spec:
       scheme: http
   selector:
     matchLabels:
-      app: oomkill-exporter
+      app.kubernetes.io/name: oomkill-exporter

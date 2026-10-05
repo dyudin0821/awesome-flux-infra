@@ -1,0 +1,39 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: httpbin
+  namespace: httpbin
+spec:
+  interval: 15m
+  timeout: 15m
+  chart:
+    spec:
+      chart: app-template
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: httpbin
+      interval: 5m
+  releaseName: httpbin
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+  values:
+    controllers:
+      httpbin:
+        containers:
+          app:
+            image:
+              repository: docker.io/mccutchen/go-httpbin
+              tag: "2.25.0"
+    service:
+      app:
+        controller: httpbin
+        ports:
+          http:
+            port: 8000
+            targetPort: 8080

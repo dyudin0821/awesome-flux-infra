@@ -1,0 +1,62 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: oomkill-exporter
+  namespace: oomkill-exporter
+spec:
+  interval: 15m
+  timeout: 15m
+  chart:
+    spec:
+      chart: app-template
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: oomkill-exporter
+      interval: 5m
+  releaseName: oomkill-exporter
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+  values:
+    defaultPodOptions:
+      tolerations:
+        - operator: Exists
+    controllers:
+      oomkill-exporter:
+        type: daemonset
+        containers:
+          app:
+            image:
+              repository: sapcc/kubernetes-oomkill-exporter
+              tag: "0.5.1"
+            args:
+              - -logtostderr
+              - -v=5
+            securityContext:
+              privileged: true
+            ports:
+              - name: metrics
+                containerPort: 9102
+            resources:
+              limits:
+                memory: 100Mi
+              requests:
+                cpu: 20m
+                memory: 100Mi
+    persistence:
+      kmsg:
+        type: hostPath
+        hostPath: /dev/kmsg
+        globalMounts:
+          - path: /dev/kmsg
+            readOnly: true
+      containerd:
+        type: hostPath
+        hostPath: /run/containerd/containerd.sock
+        globalMounts:
+          - path: /run/containerd/containerd.sock

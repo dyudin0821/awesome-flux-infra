@@ -6,7 +6,7 @@
     ":semanticCommits"
   ],
 
-  "enabledManagers": ["flux", "kubernetes", "custom.regex"],
+  "enabledManagers": ["flux", "custom.regex"],
 
   "flux": {
     "managerFilePatterns": [
@@ -14,13 +14,6 @@
       "/apps/bundles/[^/]+-flex/[^/]+\\.ya?ml$/",
       "/apps/bundles/[^/]+-minimal/[^/]+\\.ya?ml$/",
       "/clusters/.+\\.ya?ml$/"
-    ]
-  },
-
-  "kubernetes": {
-    "managerFilePatterns": [
-      "/apps/base/httpbin/httpbin\\.ya?ml$/",
-      "/apps/base/oomkill-exporter/daemonset\\.ya?ml$/"
     ]
   },
 
@@ -34,11 +27,29 @@
       ],
       "datasourceTemplate": "docker",
       "versioningTemplate": "docker"
+    },
+    {
+      "customType": "regex",
+      "description": "httpbin image tag",
+      "managerFilePatterns": ["/apps/base/httpbin/helm-release\\.ya?ml$/"],
+      "matchStrings": [
+        "repository:\\s+(?<depName>docker\\.io/mccutchen/go-httpbin)\\s*\\n\\s*tag:\\s+\"?(?<currentValue>[^\\s\"]+)\"?"
+      ],
+      "datasourceTemplate": "docker"
+    },
+    {
+      "customType": "regex",
+      "description": "oomkill-exporter image tag",
+      "managerFilePatterns": ["/apps/base/oomkill-exporter/helm-release\\.ya?ml$/"],
+      "matchStrings": [
+        "repository:\\s+(?<depName>sapcc/kubernetes-oomkill-exporter)\\s*\\n\\s*tag:\\s+\"?(?<currentValue>[^\\s\"]+)\"?"
+      ],
+      "datasourceTemplate": "docker"
     }
   ],
 
-  "timezone": "Europe/Moscow",
-  "minimumReleaseAge": "3 days",
+  "timezone": "UTC",
+  "minimumReleaseAge": "7 days",
 
   "prConcurrentLimit": 10,
   "prHourlyLimit": 10,
@@ -59,7 +70,8 @@
         "k8s-event-logger",
         "kubelinks",
         "alloy",
-        "loki"
+        "loki",
+        "metrics-server"
       ],
       "matchUpdateTypes": ["minor", "patch"],
       "groupName": "observability (minor+patch)",
@@ -81,7 +93,7 @@
     {
       "description": "Security components — manual review required",
       "matchManagers": ["flux"],
-      "matchPackageNames": ["cert-manager", "external-secrets", "kyverno"],
+      "matchPackageNames": ["cert-manager", "external-secrets", "kyverno", "reflector"],
       "automerge": false,
       "addLabels": ["security"]
     },
@@ -108,14 +120,9 @@
     },
 
     {
-      "description": "Low-risk utilities — automerge patch updates",
+      "description": "Core infra — automerge patch updates",
       "matchManagers": ["flux"],
-      "matchPackageNames": [
-        "metrics-server",
-        "reloader",
-        "reflector",
-        "keda"
-      ],
+      "matchPackageNames": ["reloader", "keda"],
       "matchUpdateTypes": ["patch"],
       "automerge": true,
       "automergeType": "pr",
@@ -131,14 +138,6 @@
       ],
       "automerge": false,
       "addLabels": ["database", "cnpg", "needs-review"]
-    },
-
-    {
-      "description": "Docker image patches — automerge",
-      "matchManagers": ["kubernetes"],
-      "matchUpdateTypes": ["patch"],
-      "automerge": true,
-      "automergeType": "pr"
     },
 
     {
