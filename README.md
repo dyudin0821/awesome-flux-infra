@@ -4,7 +4,7 @@ This repository provides a collection of infrastructure applications and add-ons
 
 **Note**: This repository serves as a boilerplate and reference implementation. All configurations should be reviewed, adapted, and validated based on your specific requirements and environment. **Do not** deploy this setup directly into production without proper customization and testing.
 
- [![test](https://github.com/brainfair/awesome-flux-infra/actions/workflows/test.yaml/badge.svg)](https://github.com/brainfair/awesome-flux-infra/actions/workflows/test.yaml)
+ [![test](https://github.com/dyudin0821/awesome-flux-infra/actions/workflows/test.yaml/badge.svg)](https://github.com/dyudin0821/awesome-flux-infra/actions/workflows/test.yaml)
 
 # Table of Contents
 
@@ -19,66 +19,63 @@ This repository provides a collection of infrastructure applications and add-ons
 - [Slack Notifications](#slack-notifications)
 - [Star History](#star-history)
 
-## Support Project
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/N4N011QV6F)
-
 ## Prerequisites
 
 - Kubernetes cluster version 1.24 or newer
-- Flux version 2.3.0 or newer bootstrapped to the [Head repository (example)](https://github.com/brainfair/awesome-flux-head)
-- [CRD GitOps repository](https://github.com/brainfair/awesome-flux-crds) must be included before this as a dependency.
+- Flux version 2.3.0 or newer bootstrapped to the [Head repository (example)](https://github.com/dyudin0821/awesome-flux-head)
+- [CRD GitOps repository](https://github.com/dyudin0821/awesome-flux-crds) must be included before this as a dependency.
 
 ## List of applications
 ### Core Components
-- [aws-load-balancer-controller](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/aws-load-balancer-controller) - Manages AWS Elastic Load Balancers for Kubernetes clusters
-- [cert-manager](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/cert-manager) - X.509 certificate controller for Kubernetes
-- [cluster-autoscaler](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/cluster-autoscaler) - a component that automatically adjusts the size of a Kubernetes Cluster
-- [external-dns](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/external-dns) - synchronizes exposed Kubernetes Services and Ingresses with DNS providers.
-- [external-secrets](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/external-secrets) - External Secrets Operator (ESO) is used to synchronize secrets from external APIs into Kubernetes
-- [Envoy Gateway](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/envoy-gateway) - an API Gateway implementation based on Envoy proxy
+- [aws-load-balancer-controller](https://github.com/dyudin0821/awesome-flux-infra/tree/main/apps/base/aws-load-balancer-controller) - Manages AWS Elastic Load Balancers for Kubernetes clusters
+- [cert-manager](https://github.com/dyudin0821/awesome-flux-infra/tree/main/apps/base/cert-manager) - X.509 certificate controller for Kubernetes
+- [cluster-autoscaler](https://github.com/dyudin0821/awesome-flux-infra/tree/main/apps/base/cluster-autoscaler) - a component that automatically adjusts the size of a Kubernetes Cluster
+- [external-dns](https://github.com/dyudin0821/awesome-flux-infra/tree/main/apps/base/external-dns) - synchronizes exposed Kubernetes Services and Ingresses with DNS providers.
+- [external-secrets](https://github.com/dyudin0821/awesome-flux-infra/tree/main/apps/base/external-secrets) - External Secrets Operator (ESO) is used to synchronize secrets from external APIs into Kubernetes
+- [Envoy Gateway](https://github.com/dyudin0821/awesome-flux-infra/tree/main/apps/base/envoy-gateway) - an API Gateway implementation based on Envoy proxy
 ### Observability Components
-- [Victoria Metrics (victoria-metrics-k8s-stack)](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/victoria-metrics-k8s-stack) - Metrics Database
-- [Victoria Logs Single](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/victoria-logs) - Logs Database
-- [flux-monitoring](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/flux-monitoring) - alerts and dashboards for the FluxCD
-- [Loki](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/loki) - Logs Database
-- [Grafana Alloy](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/alloy) - Telemetry Collector
-- [Grafana](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/grafana) - Grafana visualizations dashboards
-- [blackbox-exporter](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/blackbox-exporter) - allows blackbox probing of endpoints
-- [helm-exporter](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/helm-exporter) - Exports Helm release, chart, and version metrics in Prometheus format.
-- [k8s-event-logger](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/k8s-event-logger) - This tool simply watches Kubernetes Events and logs them to stdout in JSON to be collected and stored by your logging solution
-- [kubelinks](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/kubelinks) - Provides a web page with links to all URLs from Kubernetes ingresses and Gateway API gateways.
-- [metrics-server](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/metrics-server) - collects resource metrics from Kubelets and exposes them in Kubernetes apiserver
-- [oomkill-exporter](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/oomkill-exporter) - Exports metrics about Out-Of-Memory (OOM) events in Kubernetes
-- [x509-certificate-exporter](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/x509-certificate-exporter) - Exports metrics about x509 certificate expiration and validity.
+- [Victoria Metrics (victoria-metrics-k8s-stack)](https://github.com/dyudin0821/awesome-flux-infra/tree/main/apps/base/victoria-metrics-k8s-stack) - Metrics Database
+- [Victoria Logs Single](https://github.com/dyudin0821/awesome-flux-infra/tree/main/apps/base/victoria-logs) - Logs Database
+- [flux-monitoring](https://github.com/dyudin0821/awesome-flux-infra/tree/main/apps/base/flux-monitoring) - alerts and dashboards for the FluxCD
+- [Loki](https://github.com/dyudin0821/awesome-flux-infra/tree/main/apps/base/loki) - Logs Database
+- [Grafana Alloy](https://github.com/dyudin0821/awesome-flux-infra/tree/main/apps/base/alloy) - Telemetry Collector
+- [Grafana](https://github.com/dyudin0821/awesome-flux-infra/tree/main/apps/base/grafana) - Grafana visualizations dashboards
+- [blackbox-exporter](https://github.com/dyudin0821/awesome-flux-infra/tree/main/apps/base/blackbox-exporter) - allows blackbox probing of endpoints
+- [helm-exporter](https://github.com/dyudin0821/awesome-flux-infra/tree/main/apps/base/helm-exporter) - Exports Helm release, chart, and version metrics in Prometheus format.
+- [k8s-event-logger](https://github.com/dyudin0821/awesome-flux-infra/tree/main/apps/base/k8s-event-logger) - This tool simply watches Kubernetes Events and logs them to stdout in JSON to be collected and stored by your logging solution
+- [kubelinks](https://github.com/dyudin0821/awesome-flux-infra/tree/main/apps/base/kubelinks) - Provides a web page with links to all URLs from Kubernetes ingresses and Gateway API gateways.
+- [metrics-server](https://github.com/dyudin0821/awesome-flux-infra/tree/main/apps/base/metrics-server) - collects resource metrics from Kubelets and exposes them in Kubernetes apiserver
+- [oomkill-exporter](https://github.com/dyudin0821/awesome-flux-infra/tree/main/apps/base/oomkill-exporter) - Exports metrics about Out-Of-Memory (OOM) events in Kubernetes
+- [x509-certificate-exporter](https://github.com/dyudin0821/awesome-flux-infra/tree/main/apps/base/x509-certificate-exporter) - Exports metrics about x509 certificate expiration and validity.
 ### Security
-- [Kyverno](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/kyverno) - a cloud native policy engine
+- [Kyverno](https://github.com/dyudin0821/awesome-flux-infra/tree/main/apps/base/kyverno) - a cloud native policy engine
 ### Nice to have
-- [reflector](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/reflector)
-- [KEDA](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/keda)
-- [stakater/Reloader](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/reloader)
+- [reflector](https://github.com/dyudin0821/awesome-flux-infra/tree/main/apps/base/reflector)
+- [KEDA](https://github.com/dyudin0821/awesome-flux-infra/tree/main/apps/base/keda)
+- [stakater/Reloader](https://github.com/dyudin0821/awesome-flux-infra/tree/main/apps/base/reloader)
 ### Extra Components
-- [Apache Airflow](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/airflow)
-- [Apache Superset](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/apache-superset) - is an open-source modern data exploration and visualization platform.
-- [ArgoCD](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/argocd)
-- [capacitor (Flux UI)](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/capacitor)
-- [Clickhouse Operator (Altinity)](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/clickhouse-operator)
-- [Clickhouse simple example (Altinity)](https://github.com/brainfair/awesome-flux-infra/tree/main/clusters/homelab/clickhouse)
-- [cloudnative-pg (PostgreSQL operator)](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/cloudnative-pg)
-- [cloudnative-pg tenant example](https://github.com/brainfair/awesome-flux-infra/tree/main/clusters/homelab/pg-airflow)
-- [Dragonfly Instance (redis replacement)](https://github.com/brainfair/awesome-flux-infra/tree/main/clusters/homelab/redis)
-- [Dragonfly Operator (redis replacement)](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/dragonfly-operator)
-- [elastic operator (ECK)](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/eck-operator)
-- [httpbin](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/httpbin)
-- [Jenkins](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/jenkins-server)
-- [kro (Kube Resource Orchestrator)](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/kro)
-- [minio-operator](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/minio-operator)
-- [minio-tenant example](https://github.com/brainfair/awesome-flux-infra/tree/main/clusters/homelab/minio-loki)
-- [n8n](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/n8n) - AI workflow automation
-- [ollama & open-webui](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/ollama)
-- [pgadmin](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/pgadmin)
-- [SeaweedFS (S3 alternative)](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/seaweedfs)
-- [Valkey Instance](https://github.com/brainfair/awesome-flux-infra/tree/main/clusters/homelab/valkey-sample) - example of Valkey instance
-- [Valkey Operator](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/valkey-operator) - open-source for of redis by AWS
+- [Apache Airflow](https://github.com/dyudin0821/awesome-flux-infra/tree/main/apps/base/airflow)
+- [Apache Superset](https://github.com/dyudin0821/awesome-flux-infra/tree/main/apps/base/apache-superset) - is an open-source modern data exploration and visualization platform.
+- [ArgoCD](https://github.com/dyudin0821/awesome-flux-infra/tree/main/apps/base/argocd)
+- [capacitor (Flux UI)](https://github.com/dyudin0821/awesome-flux-infra/tree/main/apps/base/capacitor)
+- [Clickhouse Operator (Altinity)](https://github.com/dyudin0821/awesome-flux-infra/tree/main/apps/base/clickhouse-operator)
+- [Clickhouse simple example (Altinity)](https://github.com/dyudin0821/awesome-flux-infra/tree/main/clusters/homelab/clickhouse)
+- [cloudnative-pg (PostgreSQL operator)](https://github.com/dyudin0821/awesome-flux-infra/tree/main/apps/base/cloudnative-pg)
+- [cloudnative-pg tenant example](https://github.com/dyudin0821/awesome-flux-infra/tree/main/clusters/homelab/pg-airflow)
+- [Dragonfly Instance (redis replacement)](https://github.com/dyudin0821/awesome-flux-infra/tree/main/clusters/homelab/redis)
+- [Dragonfly Operator (redis replacement)](https://github.com/dyudin0821/awesome-flux-infra/tree/main/apps/base/dragonfly-operator)
+- [elastic operator (ECK)](https://github.com/dyudin0821/awesome-flux-infra/tree/main/apps/base/eck-operator)
+- [httpbin](https://github.com/dyudin0821/awesome-flux-infra/tree/main/apps/base/httpbin)
+- [Jenkins](https://github.com/dyudin0821/awesome-flux-infra/tree/main/apps/base/jenkins-server)
+- [kro (Kube Resource Orchestrator)](https://github.com/dyudin0821/awesome-flux-infra/tree/main/apps/base/kro)
+- [minio-operator](https://github.com/dyudin0821/awesome-flux-infra/tree/main/apps/base/minio-operator)
+- [minio-tenant example](https://github.com/dyudin0821/awesome-flux-infra/tree/main/clusters/homelab/minio-loki)
+- [n8n](https://github.com/dyudin0821/awesome-flux-infra/tree/main/apps/base/n8n) - AI workflow automation
+- [ollama & open-webui](https://github.com/dyudin0821/awesome-flux-infra/tree/main/apps/base/ollama)
+- [pgadmin](https://github.com/dyudin0821/awesome-flux-infra/tree/main/apps/base/pgadmin)
+- [SeaweedFS (S3 alternative)](https://github.com/dyudin0821/awesome-flux-infra/tree/main/apps/base/seaweedfs)
+- [Valkey Instance](https://github.com/dyudin0821/awesome-flux-infra/tree/main/clusters/homelab/valkey-sample) - example of Valkey instance
+- [Valkey Operator](https://github.com/dyudin0821/awesome-flux-infra/tree/main/apps/base/valkey-operator) - open-source for of redis by AWS
 
 ## Import current repository
 
@@ -97,7 +94,7 @@ spec:
     branch: main
   secretRef:
     name: flux-system
-  url: https://github.com/brainfair/awesome-flux-infra.git
+  url: https://github.com/dyudin0821/awesome-flux-infra.git
   ignore: |
  # exclude README.md
  /README.md
@@ -129,7 +126,7 @@ spec:
 * cluster_name - the name of the Kubernetes cluster
 * cluster_subdomain - subdomain for all ingress resources
 
-[Check head repository example](https://github.com/brainfair/awesome-flux-head/blob/main/clusters/homelab/01-infra.yaml)
+[Check head repository example](https://github.com/dyudin0821/awesome-flux-head/blob/main/clusters/homelab/01-infra.yaml)
 
 ## Repository structure
 
@@ -181,10 +178,10 @@ To keep infrastructure up-to-date we defined two bundles for the Docker Desktop 
 Non-production environment should include a flex bundle where we can play/test/evaluate new applications and new versions.
 Production environments should be a pointer to a stable bundle.
 
-For 3rd party applications when a new version is successfully updated in the flex bundle we run the [promotion workflow](https://github.com/brainfair/awesome-flux-infra/blob/main/.github/workflows/promotion.yml) triggered by [dispatch notification](https://github.com/brainfair/awesome-flux-infra/blob/main/clusters/homelab/flux-promotion/gh-dispatch.yaml) defined in the staging docker cluster.
+For 3rd party applications when a new version is successfully updated in the flex bundle we run the [promotion workflow](https://github.com/dyudin0821/awesome-flux-infra/blob/main/.github/workflows/promotion.yml) triggered by [dispatch notification](https://github.com/dyudin0821/awesome-flux-infra/blob/main/clusters/homelab/flux-promotion/gh-dispatch.yaml) defined in the staging docker cluster.
 
 ![Promotion Diagram](fluxcd-promote.drawio.svg)
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=brainfair/awesome-flux-infra&type=Date)](https://www.star-history.com/#brainfair/awesome-flux-infra&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=dyudin0821/awesome-flux-infra&type=Date)](https://www.star-history.com/#dyudin0821/awesome-flux-infra&Date)
