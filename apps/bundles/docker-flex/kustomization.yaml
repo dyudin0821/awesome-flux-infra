@@ -17,7 +17,6 @@ resources:
   - ../../base/external-secrets
   - ../../base/jenkins-server
   - ../../base/argocd
-  - ../../base/strimzi
   - ../../base/pgadmin
   - ../../base/airflow
   - ../../base/capacitor

@@ -45,9 +45,6 @@ spec:
       namespace: helm-exporter
     - kind: HelmRelease
       name: "*"
-      namespace: strimzi
-    - kind: HelmRelease
-      name: "*"
       namespace: external-secrets
     - kind: HelmRelease
       name: "*"
@@ -64,9 +61,6 @@ spec:
     - kind: HelmRelease
       name: "*"
       namespace: reflector
-    - kind: HelmRelease
-      name: "*"
-      namespace: strimzi
     - kind: HelmRelease
       name: "*"
       namespace: pgadmin

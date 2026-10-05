@@ -71,7 +71,6 @@
       "matchManagers": ["flux"],
       "matchPackageNames": [
         "cloudnative-pg",
-        "strimzi-kafka-operator",
         "altinity-clickhouse-operator",
         "eck-operator"
       ],

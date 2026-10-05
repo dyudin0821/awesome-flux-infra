@@ -77,7 +77,6 @@ This repository provides a collection of infrastructure applications and add-ons
 - [ollama & open-webui](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/ollama)
 - [pgadmin](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/pgadmin)
 - [SeaweedFS (S3 alternative)](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/seaweedfs)
-- [Strimzi Kafka Operator](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/strimzi)
 - [Valkey Instance](https://github.com/brainfair/awesome-flux-infra/tree/main/clusters/homelab/valkey-sample) - example of Valkey instance
 - [Valkey Operator](https://github.com/brainfair/awesome-flux-infra/tree/main/apps/base/valkey-operator) - open-source for of redis by AWS
 

@@ -138,16 +138,6 @@ spec:
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: strimzi-kafka-operator
-  namespace: strimzi
-spec:
-  chart:
-    spec:
-      version: "0.51.0"
----
-apiVersion: helm.toolkit.fluxcd.io/v2
-kind: HelmRelease
-metadata:
   name: pgadmin4
   namespace: pgadmin
 spec:
