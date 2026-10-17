@@ -6,7 +6,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "0.95.0"
+      version: "0.95.2"
       chart: victoria-metrics-k8s-stack
       sourceRef:
         kind: HelmRepository
@@ -72,7 +72,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "11.19.1"
+      version: "11.20.0"
       chart: prometheus-blackbox-exporter
       sourceRef:
         kind: HelmRepository
@@ -275,7 +275,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "1.13.0"
+      version: "1.13.1"
       chart: alloy
       sourceRef:
         kind: HelmRepository
