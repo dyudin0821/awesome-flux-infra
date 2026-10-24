@@ -29,7 +29,7 @@ spec:
           app:
             image:
               repository: docker.io/mccutchen/go-httpbin
-              tag: "2.25.0"
+              tag: "2.26.0"
     service:
       app:
         controller: httpbin
