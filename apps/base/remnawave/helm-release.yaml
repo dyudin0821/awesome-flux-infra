@@ -24,7 +24,7 @@ spec:
           app:
             image:
               repository: remnawave/backend
-              tag: 3.4.5
+              tag: 3.4.7
             env:
               DATABASE_URL:
                 valueFrom:
