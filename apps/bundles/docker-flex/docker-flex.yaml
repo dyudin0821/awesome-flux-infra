@@ -409,7 +409,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: "3.9.1"
+      version: "3.9.2"
       chart: kyverno
       sourceRef:
         kind: HelmRepository
