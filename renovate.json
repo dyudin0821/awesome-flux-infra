@@ -58,6 +58,12 @@
 
   "packageRules": [
     {
+      "description": "docker-flex bundle — disabled (too noisy)",
+      "matchFileNames": ["apps/bundles/docker-flex/**"],
+      "enabled": false
+    },
+
+    {
       "description": "Observability stack — group minor+patch into one PR",
       "matchManagers": ["flux"],
       "matchPackageNames": [
