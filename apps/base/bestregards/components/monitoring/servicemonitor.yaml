@@ -1,0 +1,25 @@
+# Needs the Prometheus Operator CRDs (ServiceMonitor, PrometheusRule); include it from the overlay only
+# when they exist. The Prometheus must select these objects (its serviceMonitorSelector and ruleSelector).
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: bestregards
+  namespace: bestregards
+  labels:
+    app.kubernetes.io/name: bestregards
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: bestregards
+      app.kubernetes.io/component: app
+  endpoints:
+    - port: metrics
+      path: /metrics
+      interval: 30s
+      scrapeTimeout: 10s
+      # The same token the service checks (METRICS_TOKEN); the Secret must be in this namespace.
+      authorization:
+        type: Bearer
+        credentials:
+          name: bestregards-secrets
+          key: METRICS_TOKEN

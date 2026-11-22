@@ -1,0 +1,29 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../../apps/base/bestregards
+  - secret-store.yaml
+  - configmap.yaml
+  - httproute.yaml
+components:
+  - ../../../apps/base/bestregards/components/external-secrets
+  - ../../../apps/base/bestregards/components/monitoring
+patches:
+  # Image pinned by digest (the tag is informational): the digest of main / sha-e6c01fb
+  - target: {kind: HelmRelease, name: bestregards}
+    patch: |-
+      - op: replace
+        path: /spec/values/controllers/bestregards/containers/app/image/tag
+        value: sha-e6c01fb@sha256:e25171f1a6d631dcbed84c2790862ffb0591f29c55d4ac5fb9c5ca2c682483fa
+      - op: replace
+        path: /spec/values/controllers/purge/containers/purge/image/tag
+        value: sha-e6c01fb@sha256:e25171f1a6d631dcbed84c2790862ffb0591f29c55d4ac5fb9c5ca2c682483fa
+      - op: replace
+        path: /spec/values/controllers/setup-webhook/containers/setup-webhook/image/tag
+        value: sha-e6c01fb@sha256:e25171f1a6d631dcbed84c2790862ffb0591f29c55d4ac5fb9c5ca2c682483fa
+  - path: external-secret-patch.yaml
+  - target: {kind: Cluster, name: bestregards-db}
+    patch: |-
+      - op: replace
+        path: /spec/instances
+        value: 1

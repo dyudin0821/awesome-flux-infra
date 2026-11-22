@@ -1,0 +1,251 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: bestregards
+  namespace: bestregards
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 5.3.0
+      interval: 30m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: bestregards
+  values:
+    global:
+      nameOverride: bestregards # the app.kubernetes.io/name label the NetworkPolicies select on
+
+    defaultPodOptions:
+      automountServiceAccountToken: false
+      enableServiceLinks: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 65532 # the "nonroot" user of the distroless base image
+        runAsGroup: 65532
+        seccompProfile:
+          type: RuntimeDefault
+
+    serviceAccount:
+      bestregards: {}
+
+    controllers:
+      bestregards:
+        type: deployment
+        defaultContainerOptions:
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: [ALL]
+        replicas: 2
+        revisionHistoryLimit: 3
+        annotations:
+          reloader.stakater.com/auto: "true"
+        strategy: RollingUpdate
+        rollingUpdate:
+          maxUnavailable: 0
+          maxSurge: 1
+        podDisruptionBudget:
+          minAvailable: 1
+        pod:
+          labels:
+            app.kubernetes.io/component: app
+          # The service stops accepting requests and then waits up to 30 s for those in flight (an AI call
+          # lasts up to 25 s) before it exits; the grace period must cover that plus the preStop pause.
+          terminationGracePeriodSeconds: 45
+          topologySpreadConstraints:
+            - maxSkew: 1
+              topologyKey: kubernetes.io/hostname
+              whenUnsatisfiable: ScheduleAnyway
+              labelSelector:
+                matchLabels:
+                  app.kubernetes.io/name: bestregards
+                  app.kubernetes.io/component: app
+        containers:
+          app:
+            image:
+              repository: ghcr.io/dyudin0821/bestregards
+              tag: main # pinned to a sha-... tag or a digest in the cluster overlay
+              pullPolicy: IfNotPresent
+            envFrom:
+              - configMapRef:
+                  name: bestregards
+              - secretRef:
+                  name: bestregards-secrets
+            env:
+              DATABASE_URL:
+                valueFrom:
+                  secretKeyRef:
+                    name: bestregards-db-app # created by CloudNativePG for the owner of the database
+                    key: uri
+            ports:
+              - name: http
+                containerPort: 8080
+              - name: metrics
+                containerPort: 9090
+            probes:
+              # Migrations run at start and can take a while on the first deploy: a generous startup window,
+              # then the liveness probe takes over.
+              startup:
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /healthz
+                    port: http
+                  periodSeconds: 2
+                  failureThreshold: 30
+              # Liveness must not depend on the database, or a database outage would restart every pod.
+              liveness:
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /healthz
+                    port: http
+                  periodSeconds: 10
+                  timeoutSeconds: 2
+                  failureThreshold: 3
+              readiness:
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /readyz
+                    port: http
+                  periodSeconds: 5
+                  timeoutSeconds: 3
+                  failureThreshold: 2
+            lifecycle:
+              preStop:
+                # Lets the endpoint removal reach the Gateway before the service stops listening.
+                sleep:
+                  seconds: 5
+            resources:
+              requests:
+                cpu: 50m
+                memory: 64Mi
+              limits:
+                memory: 256Mi
+
+      # Daily cleanup: old events (in chunks) and expired guests. It needs only the database, so it gets
+      # DATABASE_URL and nothing else from the Secret.
+      purge:
+        type: cronjob
+        defaultContainerOptions:
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: [ALL]
+        cronjob:
+          schedule: "17 3 * * *"
+          timeZone: Europe/Moscow
+          concurrencyPolicy: Forbid # a slow run must not overlap the next one
+          startingDeadlineSeconds: 3600
+          successfulJobsHistory: 3
+          failedJobsHistory: 5
+          backoffLimit: 1
+          activeDeadlineSeconds: 900
+          ttlSecondsAfterFinished: 604800
+        pod:
+          restartPolicy: Never
+          labels:
+            app.kubernetes.io/component: purge
+        containers:
+          purge:
+            image:
+              repository: ghcr.io/dyudin0821/bestregards
+              tag: main
+              pullPolicy: IfNotPresent
+            args: ["purge"]
+            env:
+              DATABASE_URL:
+                valueFrom:
+                  secretKeyRef:
+                    name: bestregards-db-app
+                    key: uri
+              EVENTS_RETENTION_DAYS:
+                valueFrom:
+                  configMapKeyRef:
+                    name: bestregards
+                    key: EVENTS_RETENTION_DAYS
+            resources:
+              requests:
+                cpu: 20m
+                memory: 32Mi
+              limits:
+                memory: 128Mi
+
+      # One-off task, kept as a suspended CronJob so that it follows the image of every deploy and still is
+      # only ever run by hand. Run it once after the first deploy and after any change of PUBLIC_URL or
+      # WEBHOOK_SECRET; it is safe to repeat:
+      #
+      #   kubectl -n bestregards create job --from=cronjob/bestregards-setup-webhook setup-webhook-$(date +%s)
+      #   kubectl -n bestregards logs job/<the job name>
+      setup-webhook:
+        type: cronjob
+        defaultContainerOptions:
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: [ALL]
+        cronjob:
+          schedule: "0 0 1 1 *" # never matters: the job is suspended
+          suspend: true
+          concurrencyPolicy: Forbid
+          successfulJobsHistory: 2
+          failedJobsHistory: 2
+          backoffLimit: 2
+          activeDeadlineSeconds: 120
+          ttlSecondsAfterFinished: 86400
+        pod:
+          restartPolicy: Never
+          labels:
+            app.kubernetes.io/component: setup-webhook
+        containers:
+          setup-webhook:
+            image:
+              repository: ghcr.io/dyudin0821/bestregards
+              tag: main
+              pullPolicy: IfNotPresent
+            args: ["setup-webhook"]
+            # It loads the whole configuration, which is validated as a whole, so it needs all of it.
+            # It never opens the database, but the configuration requires the address.
+            envFrom:
+              - configMapRef:
+                  name: bestregards
+              - secretRef:
+                  name: bestregards-secrets
+            env:
+              DATABASE_URL:
+                valueFrom:
+                  secretKeyRef:
+                    name: bestregards-db-app
+                    key: uri
+            resources:
+              requests:
+                cpu: 20m
+                memory: 32Mi
+              limits:
+                memory: 128Mi
+
+    service:
+      # Also the "job" label of the metrics: the alert rules expect job="bestregards".
+      # The metrics port is in-cluster only: no route points at it.
+      app:
+        controller: bestregards
+        labels:
+          app.kubernetes.io/component: app # what the ServiceMonitor selects
+        ports:
+          http:
+            port: 80
+            targetPort: http
+          metrics:
+            port: 9090
+            targetPort: metrics

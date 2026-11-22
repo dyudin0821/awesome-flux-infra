@@ -1,0 +1,36 @@
+# Settings that are not secret. Secrets come from Doppler through the bestregards ExternalSecret.
+# Every variable is documented in docs/configuration.md of the bestregards repository.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: bestregards
+  namespace: bestregards
+  labels:
+    app.kubernetes.io/name: bestregards
+data:
+  PORT: "8080"
+  # Behind exactly one proxy (the Gateway's data plane) that appends the client address to X-Forwarded-For.
+  # Check that your implementation does (Envoy Gateway does by default); otherwise set it to "0".
+  TRUST_PROXY: "1"
+  # https origin of the service: the Mini App button and the bot webhook are built from it.
+  PUBLIC_URL: "https://bestregards.portogate.app"
+  QUOTA_TZ: "UTC"
+  # Replicas x DB_MAX_CONNS must stay below max_connections of PostgreSQL (migrations need at least 3).
+  DB_MAX_CONNS: "10"
+  EVENTS_RETENTION_DAYS: "365"
+  # Comma-separated Telegram ids that may use /admin. Empty: nobody.
+  ADMIN_IDS: ""
+  # /metrics is served on its own port, never on the public one. The Service exposes it only to the cluster.
+  METRICS_ADDR: ":9090"
+
+  # AI provider and its prices (US dollars per million tokens). Re-check the prices before launch:
+  # the daily ceiling is computed from them.
+  AI_BASE_URL: "https://openrouter.ai/api/v1"
+  AI_MODEL: "deepseek/deepseek-v4-flash"
+  AI_PRICE_INPUT_USD_PER_MTOK: "0.09"
+  AI_PRICE_OUTPUT_USD_PER_MTOK: "0.18"
+  FREE_BUDGET_USD_PER_DAY: "10"
+
+  # Public key of the Cloudflare Turnstile widget. Set it together with TURNSTILE_SECRET in the Secret,
+  # or neither: without them guests are off and the site works only inside Telegram.
+  TURNSTILE_SITE_KEY: "0x4AAAAAAGNcur5z0W8MKlMF"

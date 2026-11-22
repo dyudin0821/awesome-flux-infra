@@ -1,0 +1,44 @@
+# PostgreSQL for bestregards, run by the CloudNativePG operator (https://cloudnative-pg.io). The operator
+# must already be installed in the cluster; this object only describes the database.
+#
+# The operator creates the Secret bestregards-db-app (user, password, host, uri...) and the Services
+# bestregards-db-rw (primary) and -ro (replicas). The service and the jobs read DATABASE_URL straight from
+# the "uri" key of that Secret, so the database password never appears in this repository or in
+# bestregards-secrets.
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: bestregards-db
+  labels:
+    app.kubernetes.io/name: bestregards-db
+spec:
+  instances: 2 # a primary and a replica that takes over; 3 adds a quorum for the failover decision
+  imageName: ghcr.io/cloudnative-pg/postgresql:17
+  primaryUpdateStrategy: unsupervised
+  bootstrap:
+    initdb:
+      database: bestregards
+      owner: bestregards
+  postgresql:
+    parameters:
+      # The service holds at most DB_MAX_CONNS (10) per replica; with the jobs and the migrations this
+      # leaves plenty of room.
+      max_connections: "100"
+  storage:
+    size: 10Gi
+    # storageClass: fast # EDIT: the default class is used when this is absent
+  # Requests equal to limits put the pods in the Guaranteed QoS class, which the operator recommends.
+  resources:
+    requests:
+      cpu: 250m
+      memory: 512Mi
+    limits:
+      cpu: 250m
+      memory: 512Mi
+  affinity:
+    topologyKey: kubernetes.io/hostname
+    podAntiAffinityType: preferred
+    # Backups are NOT configured here: they need an object store (S3 or compatible) and its credentials,
+    # which are yours to choose. The data is modest (quota counters, anonymous events, guest ids), so losing
+    # it resets daily quotas and analytics, nothing else. If you want backups, add the barman-cloud plugin
+    # and a ScheduledBackup; see https://cloudnative-pg.io/documentation/current/backup/

@@ -10,6 +10,7 @@ resources:
   - victoria-metrics-k8s-stack
   - pg-remnawave
   - remnawave
+  - bestregards
 patches:
   - path: external-dns/helm-release-patch.yaml
     target:

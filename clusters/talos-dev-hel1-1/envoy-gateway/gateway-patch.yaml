@@ -4,3 +4,19 @@
 - op: replace
   path: /spec/listeners/1/tls/certificateRefs/0/namespace
   value: envoy-gateway-system
+- op: add
+  path: /spec/listeners/-
+  value:
+    name: bestregards
+    port: 443
+    protocol: HTTPS
+    hostname: bestregards.portogate.app
+    allowedRoutes:
+      namespaces:
+        from: All
+    tls:
+      mode: Terminate
+      certificateRefs:
+        - group: ""
+          kind: Secret
+          name: bestregards-gateway-tls

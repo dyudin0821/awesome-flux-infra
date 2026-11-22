@@ -1,0 +1,90 @@
+# Prometheus alerts for bestregards, as a Prometheus Operator PrometheusRule.
+# For plain Prometheus, put the contents of spec into a file listed under rule_files.
+#
+# The HTTP metrics have generic names: the series of this service are told apart by the job label,
+# which must be "bestregards" (the scrape job, or the Service name behind a ServiceMonitor).
+# Thresholds are a starting point; adjust them to your traffic.
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: bestregards
+  namespace: bestregards
+  labels:
+    app.kubernetes.io/name: bestregards
+spec:
+  groups:
+    - name: bestregards
+      rules:
+        - alert: BestregardsDown
+          expr: up{job="bestregards"} == 0 or absent(up{job="bestregards"})
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: "bestregards: metrics are not being scraped"
+            description: "Prometheus cannot scrape /metrics: the service is down, or METRICS_ADDR/METRICS_TOKEN do not match the scrape config."
+
+        - alert: BestregardsHighErrorRate
+          expr: |
+            sum(rate(http_requests_total{job="bestregards",code=~"5.."}[5m]))
+              / sum(rate(http_requests_total{job="bestregards"}[5m])) > 0.05
+            and sum(rate(http_requests_total{job="bestregards"}[5m])) > 0.05
+          for: 10m
+          labels:
+            severity: critical
+          annotations:
+            summary: "bestregards: {{ $value | humanizePercentage }} of responses are 5xx"
+            description: "More than 5% of requests end in a server error. Per route: sum by (route) (rate(http_requests_total{job=\"bestregards\",code=~\"5..\"}[5m])). Details are in ERROR-level logs and in traces."
+
+        - alert: BestregardsGuestLoginFailing
+          expr: sum(increase(http_requests_total{job="bestregards",route="POST /api/auth/guest",code=~"5.."}[10m])) >= 3
+          labels:
+            severity: warning
+          annotations:
+            summary: "bestregards: guest login is failing"
+            description: "POST /api/auth/guest returns 5xx. Usually a wrong TURNSTILE_SECRET or Cloudflare being unreachable; see ERROR \"guest login\" in the logs."
+
+        - alert: BestregardsTranslateSlow
+          expr: |
+            histogram_quantile(0.99, sum by (le) (rate(http_request_duration_seconds_bucket{job="bestregards",route="POST /api/translate"}[5m]))) > 20
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "bestregards: translation P99 is {{ $value | humanizeDuration }}"
+            description: "The AI provider is responding slowly. The ai.complete spans show where the time goes."
+
+        - alert: BestregardsSlowRoute
+          expr: |
+            histogram_quantile(0.99, sum by (route, le) (rate(http_request_duration_seconds_bucket{job="bestregards",route!="POST /api/translate"}[5m]))) > 1
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "bestregards: P99 of {{ $labels.route }} is {{ $value | humanizeDuration }}"
+            description: "A route without AI calls takes longer than a second. Usually the database: check the SQL spans and the connection pool (DB_MAX_CONNS)."
+
+        - alert: BestregardsAIErrors
+          expr: sum(increase(bestregards_ai_errors_total{job="bestregards"}[10m])) >= 5
+          labels:
+            severity: warning
+          annotations:
+            summary: "bestregards: the AI provider is failing"
+            description: "{{ $value | humanize }} translations failed in 10 minutes because the provider failed. Users get their quota back; see ERROR \"ai unavailable\" in the logs."
+
+        - alert: BestregardsEventsDropped
+          expr: sum(increase(bestregards_events_dropped_total{job="bestregards"}[15m])) > 0
+          labels:
+            severity: warning
+          annotations:
+            summary: "bestregards: usage events are being dropped"
+            description: "Usage events are not reaching the database (the queue is full or the database is not answering). The product works, but analytics undercount."
+
+        - alert: BestregardsRateLimitSurge
+          expr: sum by (route) (rate(http_rate_limited_total{job="bestregards"}[5m])) > 1
+          for: 10m
+          labels:
+            severity: info
+          annotations:
+            summary: "bestregards: {{ $labels.route }} rejects more than 1 request per second"
+            description: "The per-IP rate limiter refuses often: someone is hammering the service, or the limit is too strict for real traffic (behind a proxy, check TRUST_PROXY)."
