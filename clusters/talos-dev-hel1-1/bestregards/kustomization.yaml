@@ -9,18 +9,18 @@ components:
   - ../../../apps/base/bestregards/components/external-secrets
   - ../../../apps/base/bestregards/components/monitoring
 patches:
-  # Image pinned by digest (the tag is informational): the digest of main / sha-e6c01fb
+  # Image pinned by digest (the tag is informational): the digest of sha-58981cd
   - target: {kind: HelmRelease, name: bestregards}
     patch: |-
       - op: replace
         path: /spec/values/controllers/bestregards/containers/app/image/tag
-        value: sha-e6c01fb@sha256:e25171f1a6d631dcbed84c2790862ffb0591f29c55d4ac5fb9c5ca2c682483fa
+        value: sha-58981cd@sha256:dafb2948ddd6cbc3dfd757f68c273bbb6bfe5e72376e5c64b3cd2ea24e1a7e1a
       - op: replace
         path: /spec/values/controllers/purge/containers/purge/image/tag
-        value: sha-e6c01fb@sha256:e25171f1a6d631dcbed84c2790862ffb0591f29c55d4ac5fb9c5ca2c682483fa
+        value: sha-58981cd@sha256:dafb2948ddd6cbc3dfd757f68c273bbb6bfe5e72376e5c64b3cd2ea24e1a7e1a
       - op: replace
         path: /spec/values/controllers/setup-webhook/containers/setup-webhook/image/tag
-        value: sha-e6c01fb@sha256:e25171f1a6d631dcbed84c2790862ffb0591f29c55d4ac5fb9c5ca2c682483fa
+        value: sha-58981cd@sha256:dafb2948ddd6cbc3dfd757f68c273bbb6bfe5e72376e5c64b3cd2ea24e1a7e1a
   - path: external-secret-patch.yaml
   - target: {kind: Cluster, name: bestregards-db}
     patch: |-
