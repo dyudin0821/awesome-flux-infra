@@ -19,7 +19,7 @@ data:
   DB_MAX_CONNS: "10"
   EVENTS_RETENTION_DAYS: "365"
   # Comma-separated Telegram ids that may use /admin. Empty: nobody.
-  ADMIN_IDS: ""
+  ADMIN_IDS: "39008121"
   # /metrics is served on its own port, never on the public one. The Service exposes it only to the cluster.
   METRICS_ADDR: ":9090"
 
