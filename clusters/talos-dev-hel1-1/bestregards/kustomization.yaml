@@ -14,13 +14,13 @@ patches:
     patch: |-
       - op: replace
         path: /spec/values/controllers/bestregards/containers/app/image/tag
-        value: sha256-92f82c62378f83e8b0e5cd87dfbfd65cbe60931eefcb72321a05f55da9a84d6c
+        value: sha-318b9c8@sha256-92f82c62378f83e8b0e5cd87dfbfd65cbe60931eefcb72321a05f55da9a84d6c
       - op: replace
         path: /spec/values/controllers/purge/containers/purge/image/tag
-        value: sha256-92f82c62378f83e8b0e5cd87dfbfd65cbe60931eefcb72321a05f55da9a84d6c
+        value: sha-318b9c8@sha256-92f82c62378f83e8b0e5cd87dfbfd65cbe60931eefcb72321a05f55da9a84d6c
       - op: replace
         path: /spec/values/controllers/setup-webhook/containers/setup-webhook/image/tag
-        value: sha256-92f82c62378f83e8b0e5cd87dfbfd65cbe60931eefcb72321a05f55da9a84d6c
+        value: sha-318b9c8@sha256-92f82c62378f83e8b0e5cd87dfbfd65cbe60931eefcb72321a05f55da9a84d6c
   - path: external-secret-patch.yaml
   - target: {kind: Cluster, name: bestregards-db}
     patch: |-
